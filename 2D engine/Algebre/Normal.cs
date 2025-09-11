@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _2D_engine.Algebre
+{
+    internal class Normal : Vector
+    {
+        public Normal(double x = 0, double y = 0, double z = 0): base(x, y, z) 
+        {
+            
+        }
+
+        public Normal(Vector v1, Vector v2) : base(v1.cross(v2))
+        {
+
+        }
+
+    }
+}

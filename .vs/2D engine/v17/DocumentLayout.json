@@ -1,0 +1,139 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Christiano\\Desktop\\2D engine\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\2d engine\\2d engine\\world.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\world.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\2d engine\\2d engine\\tracer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\tracer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\2d engine\\2d engine\\forme\\sphere.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\forme\\sphere.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\2d engine\\2d engine\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\2d engine\\2d engine\\algebre\\point.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\algebre\\point.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\2d engine\\2d engine\\algebre\\ray.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\algebre\\ray.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\2d engine\\2d engine\\algebre\\vector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\algebre\\vector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Ray.cs",
+              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\2D engine\\2D engine\\Algebre\\Ray.cs",
+              "RelativeDocumentMoniker": "2D engine\\Algebre\\Ray.cs",
+              "ToolTip": "C:\\Users\\Christiano\\Desktop\\2D engine\\2D engine\\Algebre\\Ray.cs",
+              "RelativeToolTip": "2D engine\\Algebre\\Ray.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAowA4AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T03:17:54.635Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Tracer.cs",
+              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\2D engine\\2D engine\\Tracer.cs",
+              "RelativeDocumentMoniker": "2D engine\\Tracer.cs",
+              "ToolTip": "C:\\Users\\Christiano\\Desktop\\2D engine\\2D engine\\Tracer.cs",
+              "RelativeToolTip": "2D engine\\Tracer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T18:20:41.985Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Sphere.cs",
+              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\2D engine\\2D engine\\Forme\\Sphere.cs",
+              "RelativeDocumentMoniker": "2D engine\\Forme\\Sphere.cs",
+              "ToolTip": "C:\\Users\\Christiano\\Desktop\\2D engine\\2D engine\\Forme\\Sphere.cs",
+              "RelativeToolTip": "2D engine\\Forme\\Sphere.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T18:18:27.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Point.cs",
+              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\2D engine\\2D engine\\Algebre\\Point.cs",
+              "RelativeDocumentMoniker": "2D engine\\Algebre\\Point.cs",
+              "ToolTip": "C:\\Users\\Christiano\\Desktop\\2D engine\\2D engine\\Algebre\\Point.cs",
+              "RelativeToolTip": "2D engine\\Algebre\\Point.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBUAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T16:44:22.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Vector.cs",
+              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\2D engine\\2D engine\\Algebre\\Vector.cs",
+              "RelativeDocumentMoniker": "2D engine\\Algebre\\Vector.cs",
+              "ToolTip": "C:\\Users\\Christiano\\Desktop\\2D engine\\2D engine\\Algebre\\Vector.cs",
+              "RelativeToolTip": "2D engine\\Algebre\\Vector.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAqwCEAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T16:44:11.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "World.cs",
+              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\2D engine\\2D engine\\World.cs",
+              "RelativeDocumentMoniker": "2D engine\\World.cs",
+              "ToolTip": "C:\\Users\\Christiano\\Desktop\\2D engine\\2D engine\\World.cs",
+              "RelativeToolTip": "2D engine\\World.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAuwDEAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T04:33:27.124Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\2D engine\\2D engine\\Program.cs",
+              "RelativeDocumentMoniker": "2D engine\\Program.cs",
+              "ToolTip": "C:\\Users\\Christiano\\Desktop\\2D engine\\2D engine\\Program.cs",
+              "RelativeToolTip": "2D engine\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T00:49:14.395Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
