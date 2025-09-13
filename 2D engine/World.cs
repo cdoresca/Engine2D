@@ -36,7 +36,7 @@ namespace _2D_engine
 
         }
 
-        public void rendderScene()
+        public Bitmap renderScene()
         {
             Color colorPixel;
 
@@ -63,8 +63,10 @@ namespace _2D_engine
 
             }
 
-            img.Save("RenderImage.png");
+            return img;
         }
+
+
     }
     
 }

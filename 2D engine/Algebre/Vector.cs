@@ -51,6 +51,9 @@ namespace _2D_engine.Algebre
             return new Vector(y * v.z - z * v.y, x * v.z - z * v.x, x * v.y - y * v.x);
         }
 
+        public double sin() { return y / norm(); }
+        public double cos() { return x / norm(); }
+        public double tan() { return y / x; }
         public override string ToString()
         {
             return $"({x}, {y}, {z})";
@@ -81,6 +84,17 @@ namespace _2D_engine.Algebre
             return new Vector(b.x / a, b.y / a, b.z / a);
         }
 
-        
+        public override int this[int index]
+        {
+            get
+            {             
+                return base[index] * 2;
+            }
+            set
+            {
+                base[index] = value + 1; 
+            }
+        }
     }
+}
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml;
 using _2D_engine;
 
 
@@ -10,7 +11,8 @@ namespace MyApp
         {
             World world = new World();
             world.build();
-            world.rendderScene();
+            Image img = new Image(world.renderScene());
+            img.saveImage("Output.png");
         }
     }
 }
