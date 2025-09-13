@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using _2D_engine.Algebre;
 
-namespace _2D_engine.Forme
+namespace _2D_engine.Figure
 {
-    internal class Sphere : Tracer
+    internal class Sphere : Forme
     {
 
         double rayon;
@@ -17,14 +17,15 @@ namespace _2D_engine.Forme
 
         
 
-        public Sphere(double r = 0)
+        public Sphere(Algebre.Point c,double r = 0)
         { 
             rayon = r;
+            centre = c;
         }
 
         public void setCenter(Algebre.Point p) { centre = p; }
 
-        
+       
 
         public override Color tracerRay(Ray ray)
         {
@@ -36,7 +37,7 @@ namespace _2D_engine.Forme
             return world.backgroundColor;
         }
         
-        public bool intersection(Ray ray) 
+        public override bool intersection(Ray ray) 
         {
             double a, b, c;
             Vector l = ray.origine - centre;

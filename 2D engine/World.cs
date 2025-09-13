@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using _2D_engine.Algebre;
-using _2D_engine.Forme;
+using _2D_engine.Figure;
 
 namespace _2D_engine
 {
@@ -14,8 +14,8 @@ namespace _2D_engine
 
         ViewPlane plane;
         public Color backgroundColor { get; set; }
-        Tracer tracer;
-        Sphere sphere;
+        Forme sphere;
+        
 
 
         public World() { }
@@ -29,10 +29,9 @@ namespace _2D_engine
 
             backgroundColor = Color.FromArgb(255, 0, 0, 0);
 
-            sphere = new Sphere(500);
-            sphere.setCenter(new Algebre.Point(0, 0, 0));
+            sphere = new Sphere(new Algebre.Point(0, 0, 0),500);
             sphere.world = this;
-            tracer = sphere;
+            
 
         }
 
@@ -56,7 +55,7 @@ namespace _2D_engine
 
                     ray = new Ray(new Algebre.Point(x, y, 100), new Vector(0, 0, -1));
 
-                    colorPixel = tracer.tracerRay(ray);
+                    colorPixel = sphere.tracerRay(ray);
 
                     img.SetPixel(i,j, colorPixel);
                 }

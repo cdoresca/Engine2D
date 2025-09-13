@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,9 +47,9 @@ namespace _2D_engine.Algebre
             return vector.x * x + vector.y * y + vector.z * z;
         }
 
-        public Vector cross(Vector v)
+        public Normal cross(Vector v)
         {
-            return new Vector(y * v.z - z * v.y, x * v.z - z * v.x, x * v.y - y * v.x);
+            return new Normal(y * v.z - z * v.y, x * v.z - z * v.x, x * v.y - y * v.x);
         }
 
         public double sin() { return y / norm(); }
@@ -79,22 +80,19 @@ namespace _2D_engine.Algebre
             return new Vector(a * b.x, a * b.y, a * b.z);
         }
 
+        public static double operator *(Vector a, Vector b)
+        {
+            return a.x * b.x + a.y * b.y + a.z * b.z;
+        }
+
         public static Vector operator /(Vector b, double a)
         {
             return new Vector(b.x / a, b.y / a, b.z / a);
         }
 
-        public override int this[int index]
+        public static Normal operator %(Vector a, Vector b)
         {
-            get
-            {             
-                return base[index] * 2;
-            }
-            set
-            {
-                base[index] = value + 1; 
-            }
+            return a.cross(b);
         }
     }
-}
 }
