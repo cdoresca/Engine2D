@@ -31,7 +31,7 @@ namespace _2D_engine.Figure
         {
             if (intersection(ray))
             {
-                return Color.Red;
+                return Color.CadetBlue;
             }
 
             return world.backgroundColor;

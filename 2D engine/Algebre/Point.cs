@@ -23,9 +23,10 @@ namespace _2D_engine.Algebre
 
         }
 
-        public double distance(Point other)
+        public double Distance(Point other)
         { 
-            return (other - this).n;
+
+            return (other - this).norme;
         }
 
         public override string ToString()

@@ -13,14 +13,14 @@ namespace _2D_engine.Algebre
         double y;
         double z;
 
-        public double n;
+        public double norme;
 
         public Vector(double x = 0, double y = 0, double z = 0)
         {
             this.x = x;
             this.y = y;
             this.z = z;
-             n = norm();
+             norme = norm();
 
         }
 
@@ -30,6 +30,7 @@ namespace _2D_engine.Algebre
             this.x = v.x;
             this.y = v.y;
             this.z = v.z;
+            norme = norm();
         }
 
         private double norm()
@@ -39,7 +40,7 @@ namespace _2D_engine.Algebre
 
         public Vector normalization()
         {
-            return this / n;
+            return this / norme;
         }
 
         public double dot(Vector vector)
@@ -52,8 +53,8 @@ namespace _2D_engine.Algebre
             return new Normal(y * v.z - z * v.y, x * v.z - z * v.x, x * v.y - y * v.x);
         }
 
-        public double sin() { return y / norm(); }
-        public double cos() { return x / norm(); }
+        public double sin() { return y / norme; }
+        public double cos() { return x / norme; }
         public double tan() { return y / x; }
         public override string ToString()
         {
