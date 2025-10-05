@@ -34,9 +34,9 @@ namespace _2D_engine.Algebre
             return $"({x}, {y}, {z})";
         }
 
-        public static Vector operator -(Point b, Point a)
+        public static Vecteur operator -(Point b, Point a)
         {
-            return new Vector(a.x - b.x, a.y - b.y, a.z - b.z);
+            return new Vecteur(a.x - b.x, a.y - b.y, a.z - b.z);
         }
     }
 }

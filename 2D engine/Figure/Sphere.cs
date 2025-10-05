@@ -40,7 +40,7 @@ namespace _2D_engine.Figure
         public override bool intersection(Ray ray) 
         {
             double a, b, c;
-            Vector l = ray.origine - centre;
+            Vecteur l = ray.origine - centre;
 
             a = ray.vector.dot(ray.vector);
             b = 2 * l.dot(ray.vector);

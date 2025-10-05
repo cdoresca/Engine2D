@@ -53,7 +53,7 @@ namespace _2D_engine
                     x = plane.pixelSize * (i - (plane.width + 1) * 0.5);
                     y = plane.pixelSize * (j - (plane.height + 1) * 0.5);
 
-                    ray = new Ray(new Algebre.Point(x, y, 100), new Vector(0, 0, -1));
+                    ray = new Ray(new Algebre.Point(x, y, 100), new Vecteur(0, 0, -1));
 
                     colorPixel = sphere.tracerRay(ray);
 
