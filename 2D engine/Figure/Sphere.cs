@@ -42,8 +42,8 @@ namespace _2D_engine.Figure
             double a, b, c;
             Vecteur l = ray.origine - centre;
 
-            a = ray.vector.dot(ray.vector);
-            b = 2 * l.dot(ray.vector);
+            a = ray.directeur.dot(ray.directeur);
+            b = 2 * l.dot(ray.directeur);
             c = l.dot(l) - rayon * rayon;
 
             double delta = b * b - 4 * a * c;
