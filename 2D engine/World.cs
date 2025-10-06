@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using _2D_engine.Algebre;
 using _2D_engine.Figure;
+using _2D_engine.Trace;
 
 namespace _2D_engine
 {
@@ -13,13 +14,13 @@ namespace _2D_engine
     {
 
         ViewPlane plane;
-        public Color backgroundColor { get; set; }
-        Forme sphere;
+        public Couleur backgroundColor { get; set; }
         
 
-
+        List<Forme> formeList = new List<Forme>();
+        
         public World() { }
-        public void build()
+        public void Build()
         {
             plane = new ViewPlane();
 
@@ -27,15 +28,14 @@ namespace _2D_engine
             plane.height = 2000;
             plane.pixelSize = 1.0;
 
-            backgroundColor = Color.FromArgb(255, 0, 0, 0);
+            backgroundColor = new Couleur(Color.FromArgb(255, 0, 0, 0));
 
-            sphere = new Sphere(new Algebre.Point(0, 0, 0),500);
-            sphere.world = this;
-            
+            foreach (var forme in formeList) { forme.world = this; }
 
+            Console.WriteLine($"Scène construite avec {formeList.Count} forme(s).");
         }
 
-        public Bitmap renderScene()
+        public Bitmap RenderScene()
         {
             Color colorPixel;
 
@@ -55,7 +55,7 @@ namespace _2D_engine
 
                     ray = new Ray(new Algebre.Point(x, y, 100), new Vecteur(0, 0, -1));
 
-                    colorPixel = sphere.tracerRay(ray);
+                    colorPixel = TracerRay(ray);
 
                     img.SetPixel(i,j, colorPixel);
                 }
@@ -65,7 +65,31 @@ namespace _2D_engine
             return img;
         }
 
+        public Color TracerRay(Ray ray) 
+        {
+            Color colorHit = backgroundColor.color;
+            double tmin = ray.max;
+            bool found = false; ;
 
+            foreach (var item in formeList)
+            {
+                if (item.box.Intersects(ray))
+                {
+                    if (item.Intersection(ray, out Intersection info))
+                    {
+                        if (info.t < tmin && info.t > ray.min)
+                        {
+                            tmin = info.t;
+                            colorHit = info.couleur * (ray.directeur * info.normal);
+                            found = true;
+                        }
+                    }
+                }
+            }
+            return found ? colorHit : backgroundColor.color;
+        }
+
+        public void AddForme(Forme f) { formeList.Add(f); }
     }
     
 }

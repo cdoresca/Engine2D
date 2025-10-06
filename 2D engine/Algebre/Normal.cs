@@ -17,7 +17,9 @@ namespace _2D_engine.Algebre
         {
 
         }
-      
 
+        public Normal(Vecteur v) : base(v)
+        {
+        }
     }
 }

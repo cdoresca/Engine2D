@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using _2D_engine.Algebre;
 
-namespace _2D_engine.Figure
+namespace _2D_engine.Trace
 {
     internal class BoundingBox
     {
@@ -32,7 +32,7 @@ namespace _2D_engine.Figure
 
         public bool Overlaps(BoundingBox other) 
         {
-            return (other.min > min || other.max < max) || (other.max <= max && other.min < max) || (other.min >= min && other.max > min);
+            return other.min > min || other.max < max || other.max <= max && other.min < max || other.min >= min && other.max > min;
         }
 
         public bool Contains(Algebre.Point point) 
@@ -55,7 +55,7 @@ namespace _2D_engine.Figure
                 }
 
                 tmin = Math.Max(t0,tmin);
-                tmax = Math.Min(t0,tmax);
+                tmax = Math.Min(t1,tmax);
             }
 
             return tmax > tmin;

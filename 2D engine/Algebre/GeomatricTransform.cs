@@ -9,51 +9,68 @@ namespace _2D_engine.Algebre
 {
     internal class GeomatricTransform
     {
-        Matrice matrix;
-        Matrice inverse;
+        public Matrice matrix { get; set; }
+        public Matrice inverse { get; set; }
 
-        GeomatricTransform(Matrice matrix, Matrice inverse)
+        public GeomatricTransform(Matrice matrix, Matrice inverse)
         {
             this.matrix = matrix;
             this.inverse = inverse;
         }
-
-        bool isIdentity() {  return false; }
-        Matrice GetMatrix() { return matrix; }
-        Matrice GetInverse() { return inverse; }
-
-        GeomatricTransform Translation(Vecteur translation)
+        public GeomatricTransform()
         {
-            return new GeomatricTransform(matrix.Translation(translation), inverse.Translation(-1 * translation));
+            matrix = new Matrice();inverse = new Matrice();
         }
 
-        GeomatricTransform Scale(double x, double y, double z)
+        public bool isIdentity() {  return false; }
+        public Matrice GetMatrix() { return matrix; }
+        public Matrice GetInverse() { return inverse; }
+
+        public GeomatricTransform Translation(Vecteur translation)
         {
-            return new GeomatricTransform(matrix.Scale(x, y, z), inverse.Scale(1 / x, 1 / y, 1 / z));
+            return new GeomatricTransform(Matrice.Translation(translation), Matrice.Translation(-1 * translation));
         }
 
-        GeomatricTransform RotationX(double angle) 
+        public GeomatricTransform Scale(double x, double y, double z)
+        {
+            return new GeomatricTransform(Matrice.Scale(x, y, z), Matrice.Scale(1 / x, 1 / y, 1 / z));
+        }
+
+        public GeomatricTransform RotationX(double angle) 
         { 
-            return new GeomatricTransform(matrix.RotateX(angle), inverse.RotateX(angle).GetTranspose());
+            return new GeomatricTransform(Matrice.RotateX(angle), Matrice.RotateX(-angle));
         }
 
-        GeomatricTransform RotationY(double angle)
+        public GeomatricTransform RotationY(double angle)
         {
-            return new GeomatricTransform(matrix.RotateY(angle), inverse.RotateY(angle).GetTranspose());
+            return new GeomatricTransform(Matrice.RotateY(angle), Matrice.RotateY(-angle));
         }
-        GeomatricTransform RotationZ(double angle)
+        public GeomatricTransform RotationZ(double angle)
         {
-            return new GeomatricTransform(matrix.RotateZ(angle), inverse.RotateZ(angle).GetTranspose());
+            return new GeomatricTransform(Matrice.RotateZ(angle), Matrice.RotateZ(-angle));
         }
 
-        GeomatricTransform Rotation(double angle,Vecteur dir)
+        public GeomatricTransform Rotation(double angle,Vecteur dir)
         {
-            return new GeomatricTransform(matrix.Rotate(angle,dir), inverse.Rotate(angle,dir).GetTranspose());
+            return new GeomatricTransform(Matrice.Rotate(angle,dir), Matrice.Rotate(-angle,dir));
+        }
+        public static Ray TransformRay(Ray ray, Matrice mat)
+        {
+            return new Ray(mat * ray.origine, mat * ray.directeur);
+        }
+        public static Algebre.Point TransformPoint(Algebre.Point p, Matrice mat)
+        {
+            return new Algebre.Point(mat * p);
         }
 
-
-
-
+        public static Vecteur TransformVecteur(Vecteur v, Matrice mat)
+        {
+            return new Vecteur(mat * v);
+        }
+        public static Normal TransformNormal(Normal v, Matrice mat)
+        {
+            return new Normal(mat * v);
+        }
     }
 
 }

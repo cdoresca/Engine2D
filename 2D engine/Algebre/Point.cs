@@ -12,6 +12,7 @@ namespace _2D_engine.Algebre
         double x;
         double y;
         double z;
+        
 
         public Point(double x = 0, double y = 0, double z = 0)
         {
@@ -20,8 +21,16 @@ namespace _2D_engine.Algebre
             this.z = z;
         }
 
+        public Point(Point point)
+        {
+            this.x = point[0];
+            this.y = point[1];
+            this.z = point[2];
+
+        }
+
         public double Distance(Point other)
-        { 
+        {
             return (other - this).norme;
         }
 
@@ -35,11 +44,26 @@ namespace _2D_engine.Algebre
             return new Vecteur(a.x - b.x, a.y - b.y, a.z - b.z);
         }
 
-        public static bool operator <(Point a, Point b) 
+        public static Point operator +(Vecteur a, Point b)
         {
-            return  a.x < b.x && a.y < b.y && a.z<b.z;
+            return new Point(a[0] + b.x, a[1] + b.y, a[2] + b.z);
         }
-        public static bool operator >(Point a, Point b) 
+
+        public static Point operator +(Point a, Vecteur b)
+        {
+            return new Point(a[0] + b[0], a[1] + b[1], a[2] + b[2]);
+        }
+
+        public static Point operator /(Point b, double a)
+        {
+            return new Point(b.x / a, b.y / a, b.z / a);
+        }
+
+        public static bool operator <(Point a, Point b)
+        {
+            return a.x < b.x && a.y < b.y && a.z < b.z;
+        }
+        public static bool operator >(Point a, Point b)
         {
             return a.x > b.x && a.y > b.y && a.z > b.z; ;
         }
@@ -85,4 +109,5 @@ namespace _2D_engine.Algebre
                 }
             }
         }
+    }
 }
