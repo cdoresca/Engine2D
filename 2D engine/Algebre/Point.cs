@@ -53,6 +53,10 @@ namespace _2D_engine.Algebre
         {
             return new Point(a[0] + b[0], a[1] + b[1], a[2] + b[2]);
         }
+        public static Point operator -(Point a, Vecteur b)
+        {
+            return new Point(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+        }
 
         public static Point operator /(Point b, double a)
         {

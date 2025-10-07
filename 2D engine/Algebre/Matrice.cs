@@ -44,7 +44,7 @@ namespace _2D_engine.Algebre
                     { 0,       0,       0,       1 }
             };
             isIdentity = IsIdentity();
-
+            Transpose();
         }
         bool IsIdentity()
         {
@@ -102,18 +102,20 @@ namespace _2D_engine.Algebre
 
         public static Matrice RotateX(double angle)
         {
+            double rad = angle * 2 * Math.PI / 360.0;
             double[,] tab = { { 1, 0, 0, 0},
-                              { 0, Math.Cos(angle), -Math.Sin(angle), 0},
-                              { 0, Math.Sin(angle), Math.Cos(angle), 0},
+                              { 0, Math.Cos(rad), -Math.Sin(rad), 0},
+                              { 0, Math.Sin(rad), Math.Cos(rad), 0},
                               { 0, 0, 0, 1}
             };
             return new Matrice(tab);
         }
         public static  Matrice RotateY(double angle)
         {
-            double[,] tab = { { Math.Cos(angle), 0, Math.Sin(angle), 0},
+            double rad = angle * 2 * Math.PI / 360.0;
+            double[,] tab = { { Math.Cos(rad), 0, -Math.Sin(rad), 0},
                               { 0, 1, 0, 0},
-                              { -Math.Sin(angle), 0, Math.Cos(angle), 0},
+                              { Math.Sin(rad), 0, Math.Cos(rad), 0},
                               { 0, 0, 0, 1}
             };
             return new Matrice(tab);
@@ -121,8 +123,9 @@ namespace _2D_engine.Algebre
 
         public static Matrice RotateZ(double angle)
         {
-            double[,] tab = { {  Math.Cos(angle), -Math.Sin(angle), 0, 0},
-                              { Math.Sin(angle), Math.Cos(angle), 0, 0},
+            double rad = angle * 2 * Math.PI / 360.0;
+            double[,] tab = { {  Math.Cos(rad), -Math.Sin(rad), 0, 0},
+                              { Math.Sin(rad), Math.Cos(rad), 0, 0},
                               { 0, 0, 1, 0},
                               { 0, 0, 0, 1}
             };
@@ -133,11 +136,11 @@ namespace _2D_engine.Algebre
         {
             if (directeur * directeur == 0)
                 throw new ArgumentException("Le vecteur directeur ne peut pas être nul.");
-
+            double rad = angle * 2 * Math.PI / 360.0;
             Vecteur dir = directeur.normalization();
-            Vecteur col1 = CalculRotate(new Vecteur(1, 0, 0), angle, dir);
-            Vecteur col2 = CalculRotate(new Vecteur(0, 1, 0), angle, dir);
-            Vecteur col3 = CalculRotate(new Vecteur(0, 0, 1), angle, dir);
+            Vecteur col1 = CalculRotate(new Vecteur(1, 0, 0), rad, dir);
+            Vecteur col2 = CalculRotate(new Vecteur(0, 1, 0), rad, dir);
+            Vecteur col3 = CalculRotate(new Vecteur(0, 0, 1), rad, dir);
 
             return new Matrice(col1, col2, col3);
         }
@@ -151,52 +154,31 @@ namespace _2D_engine.Algebre
             return v_d + v1 * Math.Cos(angle) + v2 * Math.Sin(angle);
         }
 
-        public static Vecteur operator *(Matrice a, Vecteur b)
+        public static Vecteur operator *(Matrice a, Vecteur v)
         {
-            double x = 0, y = 0, z = 0, w = 0;
-
-            for (int j = 0; j < 4; j++)
-            {
-                if (j < 3)
-                {
-                    x += a[0, j] * b[j];
-                    y += a[1, j] * b[j];
-                    z += a[2, j] * b[j];
-                    w += a[3, j] * b[j];
-                }
-                else
-                {
-                    x += a[0, j];
-                    y += a[1, j];
-                    z += a[2, j];
-                    w += a[3, j];
-                }
-            }
-            return new Vecteur(x, y, z) / w;
+            double x = a[0, 0] * v[0] + a[0, 1] * v[1] + a[0, 2] * v[2];
+            double y = a[1, 0] * v[0] + a[1, 1] * v[1] + a[1, 2] * v[2];
+            double z = a[2, 0] * v[0] + a[2, 1] * v[1] + a[2, 2] * v[2];
+            
+            return new Vecteur(x, y, z);
         }
 
+        
         public static Point operator *(Matrice a, Algebre.Point b)
         {
-            double x = 0, y = 0, z = 0, w = 0;
+            double x = a[0, 0] * b[0] + a[0, 1] * b[1] + a[0, 2] * b[2] + a[0, 3] * 1;
+            double y = a[1, 0] * b[0] + a[1, 1] * b[1] + a[1, 2] * b[2] + a[1, 3] * 1;
+            double z = a[2, 0] * b[0] + a[2, 1] * b[1] + a[2, 2] * b[2] + a[2, 3] * 1;
+            double w = a[3, 0] * b[0] + a[3, 1] * b[1] + a[3, 2] * b[2] + a[3, 3] * 1;
 
-            for (int j = 0; j < 4; j++)
+            if (w != 0 && w != 1)
             {
-                if (j < 3)
-                {
-                    x += a[0, j] * b[j];
-                    y += a[1, j] * b[j];
-                    z += a[2, j] * b[j];
-                    w += a[3, j] * b[j];
-                }
-                else
-                {
-                    x += a[0, j];
-                    y += a[1, j];
-                    z += a[2, j];
-                    w += a[3, j];
-                }
+                x /= w;
+                y /= w;
+                z /= w;
             }
-            return new Point(x, y, z) / w;
+
+            return new Point(x, y, z);
         }
 
         public double this[int i, int j]

@@ -32,6 +32,15 @@ namespace _2D_engine.Algebre
             this.z = v.z;
             norme = norm();
         }
+        public Vecteur(Point v)
+        {
+
+            this.x = v[0];
+            this.y = v[1];
+            this.z = v[2];
+            norme = norm();
+        }
+
 
         private double norm()
         {
@@ -50,7 +59,9 @@ namespace _2D_engine.Algebre
 
         public Normal cross(Vecteur v)
         {
-            return new Normal(y * v.z - z * v.y, x * v.z - z * v.x, x * v.y - y * v.x);
+            return  new Normal( y * v.z - z * v.y,
+                                z * v.x - x * v.z,
+                                x * v.y - y * v.x); 
         }
 
         public double sin() { return y / norme; }

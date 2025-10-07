@@ -3,10 +3,66 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using _2D_engine.Algebre;
+using _2D_engine.Trace;
 
 namespace _2D_engine.Figure
 {
-    internal class Plan
+    internal class Plan : Forme
     {
+        Normal normal = new Normal(0, 1, 0);
+
+        double width ;
+        double height ;
+        double density;
+        public Plan(double width  = 1000, double height =1000) 
+        {
+            this.width = width;
+            this.height = height;
+            this.density = 100;
+
+            box = new BoundingBox(
+                new Algebre.Point(centre[0] - width/2, centre[1] - density / 2, centre[2] - height / 2),
+                new Algebre.Point(centre[0] + width/2, centre[1] + density / 2, centre[2] + height / 2)
+            );
+            transform = new GeomatricTransform();
+        }
+
+        public override Normal CalculNormal(Point point)
+        {
+            return normal;
+        }
+
+        public override bool Intersection(Ray ray, out Intersection info)
+        {
+            info = null;
+
+            Ray localRay = GeomatricTransform.TransformRay(ray, transform.matrix);
+            if (!box.Intersects(localRay)) return false;
+
+            double denom = normal * localRay.directeur;
+
+            if (denom == 0) return false;
+
+            double t = (centre - localRay.origine) * normal / denom;
+
+            if (t < ray.min || t > ray.max)
+                return false;
+
+            Algebre.Point localHit = localRay.at(t);
+
+
+            Algebre.Point pointWorld = GeomatricTransform.TransformPoint(localHit, transform.inverse);
+            Normal normalWorld = new Normal(GeomatricTransform.TransformNormal(CalculNormal(localHit), transform.inverse).normalization());
+
+
+            info = new Intersection(t, pointWorld, normalWorld, this, this.color, (0, 0));
+            return true;
+        }
+
+        public override double Surface()
+        {
+            return width * height;
+        }
     }
 }

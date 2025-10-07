@@ -17,9 +17,9 @@ namespace _2D_engine
 
         public static Color operator *(Couleur left,double a)
         {
-            int r = Math.Clamp((int)(left.color.R * a), 0, 255);
-            int g = Math.Clamp((int)(left.color.G * a), 0, 255);
-            int b = Math.Clamp((int)(left.color.B * a), 0, 255);
+            int r = Math.Clamp((int)(left.color.R * Math.Abs(a)), 0, 255);
+            int g = Math.Clamp((int)(left.color.G * Math.Abs(a)), 0, 255);
+            int b = Math.Clamp((int)(left.color.B * Math.Abs(a)), 0, 255);
 
             return Color.FromArgb(left.color.A, r, g, b);
         }

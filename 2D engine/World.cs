@@ -15,9 +15,9 @@ namespace _2D_engine
 
         ViewPlane plane;
         public Couleur backgroundColor { get; set; }
-        
 
-        List<Forme> formeList = new List<Forme>();
+
+        List<Forme> formeList;
         
         public World() { }
         public void Build()
@@ -29,6 +29,8 @@ namespace _2D_engine
             plane.pixelSize = 1.0;
 
             backgroundColor = new Couleur(Color.FromArgb(255, 0, 0, 0));
+
+            AddForme();
 
             foreach (var forme in formeList) { forme.world = this; }
 
@@ -73,23 +75,48 @@ namespace _2D_engine
 
             foreach (var item in formeList)
             {
-                if (item.box.Intersects(ray))
+                           
+                if (item.Intersection(ray, out Intersection info))
                 {
-                    if (item.Intersection(ray, out Intersection info))
+                    if (info.t < tmin)
                     {
-                        if (info.t < tmin && info.t > ray.min)
-                        {
-                            tmin = info.t;
-                            colorHit = info.couleur * (ray.directeur * info.normal);
-                            found = true;
-                        }
+                        tmin = info.t;
+                        colorHit = info.couleur * (ray.directeur * info.normal);
+                        found = true;
                     }
                 }
+               
             }
             return found ? colorHit : backgroundColor.color;
         }
+        public void AddForme()
+        {
+            formeList = new List<Forme>();
 
-        public void AddForme(Forme f) { formeList.Add(f); }
+            Sphere sphere = new Sphere(300);
+            Plan plan = new Plan();
+            Cube cube = new Cube(200);
+            Cylindre cylindre = new Cylindre(100, 300);
+            Disque disque = new Disque();
+
+            sphere.AddTransform(GeomatricTransform.Translation(new Vecteur(1000, 0, 0)));
+            plan.AddTransform(GeomatricTransform.RotationX(25));
+            cube.AddTransform([GeomatricTransform.RotationX(45), GeomatricTransform.RotationY(45)]);
+            cylindre.AddTransform(GeomatricTransform.Scale(2, 1, 1));
+            disque.AddTransform(GeomatricTransform.Rotation(45, new Vecteur(1, 1, 0)));
+
+            formeList.Add(disque);
+
+            sphere.color = new Couleur(Color.Red);
+            plan.color = new Couleur(Color.Red);
+            cube.color = new Couleur(Color.Red);
+            cylindre.color = new Couleur(Color.Red);
+            disque.color = new Couleur(Color.Red);
+
+        }
+
     }
+
+    
     
 }

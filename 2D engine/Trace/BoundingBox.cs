@@ -11,9 +11,9 @@ namespace _2D_engine.Trace
     internal class BoundingBox
     {
 
-        Algebre.Point max;
+        public Algebre.Point max { get; set; }
 
-        Algebre.Point min;
+        public Algebre.Point min { get; set; }
 
         public BoundingBox()
         {
@@ -26,8 +26,7 @@ namespace _2D_engine.Trace
         public BoundingBox(Algebre.Point p1, Algebre.Point p2) 
         {
             max = p1 > p2 ?p1 : p2;
-            min = p1 < p2 ?p1 : p2
-                ;
+            min = p1 > p2 ?p2 : p1;
         }
 
         public bool Overlaps(BoundingBox other) 
@@ -61,7 +60,7 @@ namespace _2D_engine.Trace
             return tmax > tmin;
         }
 
-        BoundingBox Combine(BoundingBox aabb) 
+        public BoundingBox Combine(BoundingBox aabb) 
         {
             Algebre.Point p0 = min;
             Algebre.Point p1 = max;
@@ -74,7 +73,7 @@ namespace _2D_engine.Trace
 
             return new BoundingBox(p0, p1);
         }
-        BoundingBox Combine(Algebre.Point p) 
+        public BoundingBox Combine(Algebre.Point p) 
         {
             Algebre.Point p0 = min;
             Algebre.Point p1 = max;

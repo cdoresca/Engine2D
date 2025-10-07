@@ -23,36 +23,34 @@ namespace _2D_engine.Algebre
         }
 
         public bool isIdentity() {  return false; }
-        public Matrice GetMatrix() { return matrix; }
-        public Matrice GetInverse() { return inverse; }
-
-        public GeomatricTransform Translation(Vecteur translation)
+    
+        public static GeomatricTransform Translation(Vecteur translation)
         {
             return new GeomatricTransform(Matrice.Translation(translation), Matrice.Translation(-1 * translation));
         }
 
-        public GeomatricTransform Scale(double x, double y, double z)
+        public static GeomatricTransform Scale(double x, double y, double z)
         {
             return new GeomatricTransform(Matrice.Scale(x, y, z), Matrice.Scale(1 / x, 1 / y, 1 / z));
         }
 
-        public GeomatricTransform RotationX(double angle) 
+        public static GeomatricTransform RotationX(double angle) 
         { 
-            return new GeomatricTransform(Matrice.RotateX(angle), Matrice.RotateX(-angle));
+            return new GeomatricTransform(Matrice.RotateX(angle), Matrice.RotateX(angle).GetTranspose());
         }
 
-        public GeomatricTransform RotationY(double angle)
+        public static GeomatricTransform RotationY(double angle)
         {
-            return new GeomatricTransform(Matrice.RotateY(angle), Matrice.RotateY(-angle));
+            return new GeomatricTransform(Matrice.RotateY(angle), Matrice.RotateY(angle).GetTranspose());
         }
-        public GeomatricTransform RotationZ(double angle)
+        public static GeomatricTransform RotationZ(double angle)
         {
-            return new GeomatricTransform(Matrice.RotateZ(angle), Matrice.RotateZ(-angle));
+            return new GeomatricTransform(Matrice.RotateZ(angle), Matrice.RotateZ(angle).GetTranspose());
         }
 
-        public GeomatricTransform Rotation(double angle,Vecteur dir)
+        public static GeomatricTransform Rotation(double angle,Vecteur dir)
         {
-            return new GeomatricTransform(Matrice.Rotate(angle,dir), Matrice.Rotate(-angle,dir));
+            return new GeomatricTransform(Matrice.Rotate(angle,dir), Matrice.Rotate(angle, dir).GetTranspose());
         }
         public static Ray TransformRay(Ray ray, Matrice mat)
         {
@@ -69,7 +67,12 @@ namespace _2D_engine.Algebre
         }
         public static Normal TransformNormal(Normal v, Matrice mat)
         {
-            return new Normal(mat * v);
+            return new Normal((mat * v).normalization());
+        }
+        public void Multiply( GeomatricTransform gt)
+        {
+            matrix = matrix * gt.matrix;
+            inverse = gt.inverse * inverse;
         }
     }
 

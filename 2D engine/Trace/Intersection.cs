@@ -21,7 +21,11 @@ namespace _2D_engine.Trace
             objet = f;
             couleur = c;
         }
-       
+
+        public Intersection()
+        {
+        }
+
         public double t;
         public Algebre.Point point;
         public Normal normal;

@@ -3,10 +3,64 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using _2D_engine.Algebre;
+using _2D_engine.Trace;
 
 namespace _2D_engine.Figure
 {
-    internal class Disque
+    internal class Disque : Forme
     {
+        Normal normal;
+        double rayonInterieur;
+        double rayonExterieur;
+        double density;
+        public Disque(double ro = 300,double ri=100) 
+        { 
+            normal = new Normal(0,1,0);
+            rayonExterieur = ro;
+            rayonInterieur = ri;
+            density = 100;
+            Algebre.Point min = new Algebre.Point(centre[0] - rayonExterieur, centre[1] - density, centre[2] - rayonExterieur);
+            Algebre.Point max = new Algebre.Point(centre[0] + rayonExterieur, centre[1] + density, centre[2] + rayonExterieur);
+            box =   new BoundingBox(min, max);
+            transform = new GeomatricTransform();
+
+        }
+        public override Normal CalculNormal(Point point)
+        {
+            return normal;
+        }
+
+        public override bool Intersection(Ray ray, out Intersection info)
+        {
+            info = null;
+
+            Ray localRay = GeomatricTransform.TransformRay(ray, transform.matrix);
+            if (!box.Intersects(localRay)) return false;
+
+            double denom = normal * localRay.directeur;
+
+            if (denom == 0) return false;
+
+            double t = (centre - localRay.origine) * normal / denom;
+
+            Algebre.Point localHit = localRay.at(t);
+
+            double d = (localHit - centre).norme;
+
+            if (d < rayonInterieur || d > rayonExterieur) return false;
+
+            Algebre.Point pointWorld = GeomatricTransform.TransformPoint(localHit, transform.inverse);
+            Normal normalWorld = GeomatricTransform.TransformNormal(CalculNormal(localHit), transform.inverse);
+
+
+            info = new Intersection(t, pointWorld, normalWorld, this, this.color, (0, 0));
+            return true;
+        }
+
+        public override double Surface()
+        {
+            return Math.PI * (rayonExterieur * rayonExterieur - rayonInterieur * rayonInterieur);
+        }
     }
 }
