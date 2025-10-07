@@ -14,21 +14,20 @@ namespace _2D_engine.Figure
         double size;
         Algebre.Point min;
         Algebre.Point max;
-        public Cube( double s = 100,GeomatricTransform t = null)
+        public Cube( double s = 100)
         {
             size = s;
             double half = size / 2;
             min = new Algebre.Point(centre[0] - half, centre[1] - half, centre[2] - half);
             max = new Algebre.Point(centre[0] + half, centre[1] + half, centre[2] + half);
             box = new BoundingBox(min, max);
-            transform = t ?? new GeomatricTransform();
+            transform =  new GeomatricTransform();
         }
 
         public override bool Intersection(Ray ray, out Intersection info)
         {
             info = null;
 
-            
             Ray localRay = GeomatricTransform.TransformRay(ray, transform.matrix);
 
             if (!box.Intersects(localRay)) return false;

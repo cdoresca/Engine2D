@@ -98,6 +98,7 @@ namespace _2D_engine
             Cube cube = new Cube(200);
             Cylindre cylindre = new Cylindre(100, 300);
             Disque disque = new Disque();
+            Cone cone = new Cone(150, 300);
 
             sphere.AddTransform(GeomatricTransform.Translation(new Vecteur(1000, 0, 0)));
             plan.AddTransform(GeomatricTransform.RotationX(25));
@@ -105,13 +106,14 @@ namespace _2D_engine
             cylindre.AddTransform(GeomatricTransform.Scale(2, 1, 1));
             disque.AddTransform(GeomatricTransform.Rotation(45, new Vecteur(1, 1, 0)));
 
-            formeList.Add(disque);
+            formeList.Add(cone);
 
             sphere.color = new Couleur(Color.Red);
             plan.color = new Couleur(Color.Red);
             cube.color = new Couleur(Color.Red);
             cylindre.color = new Couleur(Color.Red);
             disque.color = new Couleur(Color.Red);
+            cone.color = new Couleur(Color.Red);
 
         }
 

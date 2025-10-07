@@ -12,7 +12,7 @@ namespace _2D_engine.Figure
     {
         double rayon,height;
 
-        public Cylindre(double r,double h, GeomatricTransform t = null) 
+        public Cylindre(double r,double h) 
         {
             rayon = r;
             height = h;
@@ -20,7 +20,7 @@ namespace _2D_engine.Figure
             Algebre.Point min = new Algebre.Point(centre[0] - rayon, centre[1] - height, centre[2] - rayon);
             Algebre.Point max = new Algebre.Point(centre[0] + rayon, centre[1] + height, centre[2] + rayon);
             box = new BoundingBox(min, max);
-            transform = t ?? new GeomatricTransform();
+            transform = new GeomatricTransform();
 
 
         }
