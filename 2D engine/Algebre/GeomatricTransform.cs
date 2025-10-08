@@ -71,8 +71,8 @@ namespace _2D_engine.Algebre
         }
         public void Multiply( GeomatricTransform gt)
         {
-            matrix = matrix * gt.matrix;
-            inverse = gt.inverse * inverse;
+            matrix = gt.matrix * matrix;
+            inverse = inverse * gt.inverse;
         }
     }
 

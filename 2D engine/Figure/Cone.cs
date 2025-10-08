@@ -71,6 +71,7 @@ namespace _2D_engine.Figure
 
             if (localHit[1] < 0 || localHit[1] > hauteur)
                 return false;
+
             Normal localNormal = CalculNormal(localHit);
 
 

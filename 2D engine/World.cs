@@ -81,7 +81,7 @@ namespace _2D_engine
                     if (info.t < tmin)
                     {
                         tmin = info.t;
-                        colorHit = info.couleur * (ray.directeur * info.normal);
+                        colorHit = info.couleur.color;// * (ray.directeur * info.normal);
                         found = true;
                     }
                 }
@@ -95,18 +95,20 @@ namespace _2D_engine
 
             Sphere sphere = new Sphere(300);
             Plan plan = new Plan();
-            Cube cube = new Cube(200);
+            Cube cube = new Cube(600);
             Cylindre cylindre = new Cylindre(100, 300);
             Disque disque = new Disque();
             Cone cone = new Cone(150, 300);
+            Triangle triangle = new Triangle( 500,300);
 
             sphere.AddTransform(GeomatricTransform.Translation(new Vecteur(1000, 0, 0)));
             plan.AddTransform(GeomatricTransform.RotationX(25));
             cube.AddTransform([GeomatricTransform.RotationX(45), GeomatricTransform.RotationY(45)]);
             cylindre.AddTransform(GeomatricTransform.Scale(2, 1, 1));
             disque.AddTransform(GeomatricTransform.Rotation(45, new Vecteur(1, 1, 0)));
+            triangle.AddTransform(GeomatricTransform.RotationX(25));
 
-            formeList.Add(cone);
+            formeList.Add(triangle);
 
             sphere.color = new Couleur(Color.Red);
             plan.color = new Couleur(Color.Red);
@@ -114,6 +116,7 @@ namespace _2D_engine
             cylindre.color = new Couleur(Color.Red);
             disque.color = new Couleur(Color.Red);
             cone.color = new Couleur(Color.Red);
+            triangle.color = new Couleur(Color.Red);
 
         }
 

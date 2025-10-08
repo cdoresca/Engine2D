@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Christiano\\Desktop\\Engine2D\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\engine2d\\2d engine\\figure\\cone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\figure\\cone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\engine2d\\2d engine\\algebre\\matrice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\algebre\\matrice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\engine2d\\2d engine\\figure\\triangle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\figure\\triangle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\engine2d\\2d engine\\world.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,24 +15,20 @@
       "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\engine2d\\2d engine\\figure\\cube.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\figure\\cube.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\engine2d\\2d engine\\algebre\\matrice3x3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\algebre\\matrice3x3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\engine2d\\2d engine\\figure\\cylindre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\figure\\cylindre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\engine2d\\2d engine\\trace\\boundingbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\trace\\boundingbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\engine2d\\2d engine\\algebre\\geomatrictransform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\algebre\\geomatrictransform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\engine2d\\2d engine\\algebre\\systemeequation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\algebre\\systemeequation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\engine2d\\2d engine\\figure\\disque.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\figure\\disque.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\engine2d\\2d engine\\figure\\plan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\figure\\plan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|c:\\users\\christiano\\desktop\\engine2d\\2d engine\\figure\\sphere.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99F48F2-CDB7-49B8-9EB7-348140A2CE3A}|2D engine\\2D engine.csproj|solutionrelative:2d engine\\figure\\sphere.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,125 +38,99 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Cylindre.cs",
-              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Figure\\Cylindre.cs",
-              "RelativeDocumentMoniker": "2D engine\\Figure\\Cylindre.cs",
-              "ToolTip": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Figure\\Cylindre.cs",
-              "RelativeToolTip": "2D engine\\Figure\\Cylindre.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T04:09:13.564Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Cone.cs",
-              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Figure\\Cone.cs",
-              "RelativeDocumentMoniker": "2D engine\\Figure\\Cone.cs",
-              "ToolTip": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Figure\\Cone.cs*",
-              "RelativeToolTip": "2D engine\\Figure\\Cone.cs*",
-              "ViewState": "AgIAADEAAAAAAAAAAAArwEgAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T04:04:38.198Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Cube.cs",
-              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Figure\\Cube.cs",
-              "RelativeDocumentMoniker": "2D engine\\Figure\\Cube.cs",
-              "ToolTip": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Figure\\Cube.cs",
-              "RelativeToolTip": "2D engine\\Figure\\Cube.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAYwDYAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T04:03:51.667Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "GeomatricTransform.cs",
-              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Algebre\\GeomatricTransform.cs",
-              "RelativeDocumentMoniker": "2D engine\\Algebre\\GeomatricTransform.cs",
-              "ToolTip": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Algebre\\GeomatricTransform.cs",
-              "RelativeToolTip": "2D engine\\Algebre\\GeomatricTransform.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAuwDQAAAAMAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "SystemeEquation.cs",
+              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Algebre\\SystemeEquation.cs",
+              "RelativeDocumentMoniker": "2D engine\\Algebre\\SystemeEquation.cs",
+              "ToolTip": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Algebre\\SystemeEquation.cs",
+              "RelativeToolTip": "2D engine\\Algebre\\SystemeEquation.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAqwBgAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T03:52:18.949Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Plan.cs",
-              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Figure\\Plan.cs",
-              "RelativeDocumentMoniker": "2D engine\\Figure\\Plan.cs",
-              "ToolTip": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Figure\\Plan.cs",
-              "RelativeToolTip": "2D engine\\Figure\\Plan.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T03:33:39.362Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Matrice.cs",
-              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Algebre\\Matrice.cs",
-              "RelativeDocumentMoniker": "2D engine\\Algebre\\Matrice.cs",
-              "ToolTip": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Algebre\\Matrice.cs",
-              "RelativeToolTip": "2D engine\\Algebre\\Matrice.cs",
-              "ViewState": "AgIAAI4AAAAAAAAAAAAYwC4AAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T03:26:54.831Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Disque.cs",
-              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Figure\\Disque.cs",
-              "RelativeDocumentMoniker": "2D engine\\Figure\\Disque.cs",
-              "ToolTip": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Figure\\Disque.cs",
-              "RelativeToolTip": "2D engine\\Figure\\Disque.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAQwCQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T02:54:55.414Z",
+              "WhenOpened": "2025-10-08T03:34:38.421Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Matrice3x3.cs",
+              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Algebre\\Matrice3x3.cs",
+              "RelativeDocumentMoniker": "2D engine\\Algebre\\Matrice3x3.cs",
+              "ToolTip": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Algebre\\Matrice3x3.cs",
+              "RelativeToolTip": "2D engine\\Algebre\\Matrice3x3.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAAArwFsAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T03:25:54.511Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Sphere.cs",
+              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Figure\\Sphere.cs",
+              "RelativeDocumentMoniker": "2D engine\\Figure\\Sphere.cs",
+              "ToolTip": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Figure\\Sphere.cs",
+              "RelativeToolTip": "2D engine\\Figure\\Sphere.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAEQAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T02:36:56.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BoundingBox.cs",
+              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Trace\\BoundingBox.cs",
+              "RelativeDocumentMoniker": "2D engine\\Trace\\BoundingBox.cs",
+              "ToolTip": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Trace\\BoundingBox.cs",
+              "RelativeToolTip": "2D engine\\Trace\\BoundingBox.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAewFQAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T20:07:24.787Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Triangle.cs",
+              "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Figure\\Triangle.cs",
+              "RelativeDocumentMoniker": "2D engine\\Figure\\Triangle.cs",
+              "ToolTip": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Figure\\Triangle.cs",
+              "RelativeToolTip": "2D engine\\Figure\\Triangle.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAADwv0IAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T19:58:51.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Program.cs",
               "RelativeDocumentMoniker": "2D engine\\Program.cs",
               "ToolTip": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\Program.cs",
               "RelativeToolTip": "2D engine\\Program.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-07T02:39:36.965Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "World.cs",
               "DocumentMoniker": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\World.cs",
               "RelativeDocumentMoniker": "2D engine\\World.cs",
               "ToolTip": "C:\\Users\\Christiano\\Desktop\\Engine2D\\2D engine\\World.cs",
               "RelativeToolTip": "2D engine\\World.cs",
-              "ViewState": "AgIAAFsAAAAAAAAAAIA0wGsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAmwFMAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-06T16:44:42.93Z",
               "EditorCaption": ""

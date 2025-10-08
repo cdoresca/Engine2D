@@ -15,7 +15,7 @@ namespace MyApp
             World world = new World();
             world.Build();
             _2D_engine.Image img = new _2D_engine.Image(world.RenderScene());
-            img.saveImage("Cone.png");
+            img.saveImage("Triangle.png");
         }
     }
 }

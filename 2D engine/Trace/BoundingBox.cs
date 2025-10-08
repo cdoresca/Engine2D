@@ -75,13 +75,14 @@ namespace _2D_engine.Trace
         }
         public BoundingBox Combine(Algebre.Point p) 
         {
-            Algebre.Point p0 = min;
-            Algebre.Point p1 = max;
+            
+            Algebre.Point p0 = new Algebre.Point();
+            Algebre.Point p1 = new Algebre.Point();
 
             for (int i = 0; i < 3; i++)
             {
-                p0[i] = Math.Min(p0[i],p[i]);
-                p1[i] = Math.Max(p1[i],p[i]);
+                p0[i] = Math.Min(min[i], p[i]);
+                p1[i] = Math.Max(max[i], p[i]);
             }
 
             return new BoundingBox(p0,p1);

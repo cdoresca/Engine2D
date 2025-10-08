@@ -16,7 +16,7 @@ namespace _2D_engine.Figure
         double rayon;
         
         
-        public Sphere(double r = 100, GeomatricTransform t= null)
+        public Sphere(double r = 100)
         { 
             rayon = r;
          
@@ -24,7 +24,7 @@ namespace _2D_engine.Figure
                 new Algebre.Point(centre[0] - rayon, centre[1] - rayon, centre[2] - rayon),
                 new Algebre.Point(centre[0] + rayon, centre[1] + rayon, centre[2] + rayon)
             );
-            transform = t ?? new GeomatricTransform();
+            transform = new GeomatricTransform();
 
         }
 
@@ -70,7 +70,7 @@ namespace _2D_engine.Figure
            
 
             Algebre.Point pointWorld = GeomatricTransform.TransformPoint(localHit, transform.inverse);
-            Normal normalWorld = new Normal(GeomatricTransform.TransformNormal(CalculNormal(localHit),transform.inverse).normalization());
+            Normal normalWorld = GeomatricTransform.TransformNormal(CalculNormal(localHit),transform.inverse);
             
 
             info = new Intersection(t, pointWorld, normalWorld, this, this.color, (0,0));
