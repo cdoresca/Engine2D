@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _2D_engine.Algebre;
+﻿using _2D_engine.Algebre;
 using _2D_engine.Trace;
+using GT = _2D_engine.Algebre.GeomatricTransform;
 
 namespace _2D_engine.Figure
 {
     internal abstract class Forme
     {
-       
-        public GeomatricTransform transform { get; set; }
-        
+
+        public GT transform { get; set; }
         public Couleur color { get; set; }
         public World world { get; set; }
         public BoundingBox box { get; set; }
-        public Algebre.Point centre = new Algebre.Point(0,0,0);
+        public Algebre.Point centre = new Algebre.Point(0, 0, 0);
         public abstract bool Intersection(Ray ray, out Intersection info);
 
-        
+
         public abstract double Surface();
 
         public void setCenter(Algebre.Point p) { centre = p; }
@@ -36,16 +30,22 @@ namespace _2D_engine.Figure
             return (u, v);
         }
         public abstract Normal CalculNormal(Algebre.Point point);
-       
 
-        public void AddTransform(params GeomatricTransform[] transforms)
+
+        public void AddTransform(params GT[] transforms)
         {
-            foreach (GeomatricTransform t in transforms)
+            foreach (GT t in transforms)
             {
                 transform.Multiply(t);
             }
 
         }
-
+         
+        public bool boundingBox(Ray ray)
+        {
+            Ray localRay = GT.TransformRay(ray, transform.matrix);
+            if (!box.Intersects(localRay)) return false;
+            return true;
+        }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _2D_engine.Algebre;
+﻿using _2D_engine.Algebre;
 using _2D_engine.Trace;
 
 namespace _2D_engine.Figure
@@ -13,16 +8,15 @@ namespace _2D_engine.Figure
         Normal normal;
         double rayonInterieur;
         double rayonExterieur;
-        double density;
-        public Disque(double ro = 300,double ri=100) 
-        { 
-            normal = new Normal(0,1,0);
+
+        public Disque(double ro = 300, double ri = 100)
+        {
+            normal = new Normal(0, 1, 0);
             rayonExterieur = ro;
             rayonInterieur = ri;
-            density = 100;
-            Algebre.Point min = new Algebre.Point(centre[0] - rayonExterieur, centre[1] - density, centre[2] - rayonExterieur);
-            Algebre.Point max = new Algebre.Point(centre[0] + rayonExterieur, centre[1] + density, centre[2] + rayonExterieur);
-            box =   new BoundingBox(min, max);
+            Algebre.Point min = new Algebre.Point(centre[0] - rayonExterieur, centre[1], centre[2] - rayonExterieur);
+            Algebre.Point max = new Algebre.Point(centre[0] + rayonExterieur, centre[1], centre[2] + rayonExterieur);
+            box = new BoundingBox(min, max);
             transform = new GeomatricTransform();
 
         }
@@ -36,7 +30,6 @@ namespace _2D_engine.Figure
             info = null;
 
             Ray localRay = GeomatricTransform.TransformRay(ray, transform.matrix);
-            if (!box.Intersects(localRay)) return false;
 
             double denom = normal * localRay.directeur;
 

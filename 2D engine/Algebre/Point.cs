@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _2D_engine.Algebre
+﻿namespace _2D_engine.Algebre
 {
     internal class Point
     {
@@ -12,7 +6,7 @@ namespace _2D_engine.Algebre
         double x;
         double y;
         double z;
-        
+
 
         public Point(double x = 0, double y = 0, double z = 0)
         {

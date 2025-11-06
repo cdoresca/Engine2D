@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _2D_engine.Algebre
+﻿namespace _2D_engine.Algebre
 {
     internal class Vecteur
     {
@@ -59,9 +52,9 @@ namespace _2D_engine.Algebre
 
         public Normal cross(Vecteur v)
         {
-            return  new Normal( y * v.z - z * v.y,
+            return new Normal(y * v.z - z * v.y,
                                 z * v.x - x * v.z,
-                                x * v.y - y * v.x); 
+                                x * v.y - y * v.x);
         }
 
         public double sin() { return y / norme; }

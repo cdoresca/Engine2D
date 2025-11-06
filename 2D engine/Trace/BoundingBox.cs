@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _2D_engine.Algebre;
+﻿using _2D_engine.Algebre;
 
 namespace _2D_engine.Trace
 {
@@ -19,48 +13,48 @@ namespace _2D_engine.Trace
         {
             Random rnd = new Random();
 
-           max = new Algebre.Point(rnd.Next(), rnd.Next(),rnd.Next());
-           min = new Algebre.Point(rnd.Next(), rnd.Next(),rnd.Next());
+            max = new Algebre.Point(rnd.Next(), rnd.Next(), rnd.Next());
+            min = new Algebre.Point(rnd.Next(), rnd.Next(), rnd.Next());
         }
 
-        public BoundingBox(Algebre.Point p1, Algebre.Point p2) 
+        public BoundingBox(Algebre.Point p1, Algebre.Point p2)
         {
-            max = p1 > p2 ?p1 : p2;
-            min = p1 > p2 ?p2 : p1;
+            max = p1 > p2 ? p1 : p2;
+            min = p1 > p2 ? p2 : p1;
         }
 
-        public bool Overlaps(BoundingBox other) 
+        public bool Overlaps(BoundingBox other)
         {
-            return other.min > min || other.max < max || other.max <= max && other.min < max || other.min >= min && other.max > min;
+            return other.min > min || other.max < max || (other.max <= max && other.min < max) || (other.min >= min && other.max > min);
         }
 
-        public bool Contains(Algebre.Point point) 
+        public bool Contains(Algebre.Point point)
         {
             return point > min && point < max;
         }
 
-        public bool Intersects(Ray r) 
+        public bool Intersects(Ray r)
         {
             double t0, t1, tmax = r.max, tmin = r.min;
 
-            for (int i = 0; i < 3; i++) 
+            for (int i = 0; i < 3; i++)
             {
                 t0 = (min[i] - r.origine[i]) / r.directeur[i];
                 t1 = (max[i] - r.origine[i]) / r.directeur[i];
 
                 if (t0 > t1)
                 {
-                    (t0,t1) =(t1,t0);
+                    (t0, t1) = (t1, t0);
                 }
 
-                tmin = Math.Max(t0,tmin);
-                tmax = Math.Min(t1,tmax);
+                tmin = Math.Max(t0, tmin);
+                tmax = Math.Min(t1, tmax);
             }
 
-            return tmax > tmin;
+            return tmax >= tmin;
         }
 
-        public BoundingBox Combine(BoundingBox aabb) 
+        public BoundingBox Combine(BoundingBox aabb)
         {
             Algebre.Point p0 = min;
             Algebre.Point p1 = max;
@@ -73,9 +67,9 @@ namespace _2D_engine.Trace
 
             return new BoundingBox(p0, p1);
         }
-        public BoundingBox Combine(Algebre.Point p) 
+        public BoundingBox Combine(Algebre.Point p)
         {
-            
+
             Algebre.Point p0 = new Algebre.Point();
             Algebre.Point p1 = new Algebre.Point();
 
@@ -85,7 +79,7 @@ namespace _2D_engine.Trace
                 p1[i] = Math.Max(max[i], p[i]);
             }
 
-            return new BoundingBox(p0,p1);
+            return new BoundingBox(p0, p1);
         }
     }
 }

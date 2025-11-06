@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _2D_engine.Algebre;
+﻿using _2D_engine.Algebre;
 using _2D_engine.Trace;
 
 namespace _2D_engine.Figure
@@ -12,18 +7,18 @@ namespace _2D_engine.Figure
     {
         Normal normal = new Normal(0, 1, 0);
 
-        double width ;
-        double height ;
-        double density;
-        public Plan(double width  = 1000, double height =1000) 
+        double width;
+        double height;
+
+        public Plan(double width = 1000, double height = 1000)
         {
             this.width = width;
             this.height = height;
-            this.density = 100;
+
 
             box = new BoundingBox(
-                new Algebre.Point(centre[0] - width/2, centre[1] - density / 2, centre[2] - height / 2),
-                new Algebre.Point(centre[0] + width/2, centre[1] + density / 2, centre[2] + height / 2)
+                new Algebre.Point(centre[0] - width / 2, centre[1], centre[2] - height / 2),
+                new Algebre.Point(centre[0] + width / 2, centre[1], centre[2] + height / 2)
             );
             transform = new GeomatricTransform();
         }
@@ -38,7 +33,6 @@ namespace _2D_engine.Figure
             info = null;
 
             Ray localRay = GeomatricTransform.TransformRay(ray, transform.matrix);
-            if (!box.Intersects(localRay)) return false;
 
             double denom = normal * localRay.directeur;
 

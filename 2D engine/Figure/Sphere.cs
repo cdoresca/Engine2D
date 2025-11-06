@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Net.Sockets;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using _2D_engine.Algebre;
+﻿using _2D_engine.Algebre;
 using _2D_engine.Trace;
 
 namespace _2D_engine.Figure
@@ -14,12 +6,12 @@ namespace _2D_engine.Figure
     internal class Sphere : Forme
     {
         double rayon;
-        
-        
+
+
         public Sphere(double r = 100)
-        { 
+        {
             rayon = r;
-         
+
             box = new BoundingBox(
                 new Algebre.Point(centre[0] - rayon, centre[1] - rayon, centre[2] - rayon),
                 new Algebre.Point(centre[0] + rayon, centre[1] + rayon, centre[2] + rayon)
@@ -31,13 +23,11 @@ namespace _2D_engine.Figure
 
 
 
-        public override bool Intersection(Ray ray, out Intersection info) 
+        public override bool Intersection(Ray ray, out Intersection info)
         {
             info = null;
 
             Ray localRay = GeomatricTransform.TransformRay(ray, transform.matrix);
-
-            if (!box.Intersects(localRay)) return false;
 
             double a, b, c;
             Vecteur l = new Vecteur(localRay.origine);
@@ -48,14 +38,14 @@ namespace _2D_engine.Figure
 
             double delta = b * b - 4 * a * c;
 
-            if(delta < 0) { return false; }
+            if (delta < 0) { return false; }
 
             double t;
 
-            t = (- b - Math.Sqrt(delta)) / (2 * a);
-            
+            t = (-b - Math.Sqrt(delta)) / (2 * a);
 
-            if (t < localRay.min || t > localRay.max) 
+
+            if (t < localRay.min || t > localRay.max)
             {
                 t = (-b + Math.Sqrt(delta)) / (2 * a);
 
@@ -65,22 +55,22 @@ namespace _2D_engine.Figure
                 }
             }
 
-            
+
             Algebre.Point localHit = localRay.at(t);
-           
+
 
             Algebre.Point pointWorld = GeomatricTransform.TransformPoint(localHit, transform.inverse);
-            Normal normalWorld = GeomatricTransform.TransformNormal(CalculNormal(localHit),transform.inverse);
-            
+            Normal normalWorld = GeomatricTransform.TransformNormal(CalculNormal(localHit), transform.inverse);
 
-            info = new Intersection(t, pointWorld, normalWorld, this, this.color, (0,0));
+
+            info = new Intersection(t, pointWorld, normalWorld, this, this.color, (0, 0));
 
 
 
             return true;
         }
         public override double Surface()
-        {  
+        {
             return 4.0 * Math.PI * rayon * rayon;
         }
 

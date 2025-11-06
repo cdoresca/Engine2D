@@ -1,9 +1,4 @@
-﻿using System;
-using System.Xml;
-using _2D_engine;
-using _2D_engine.Figure;
-using _2D_engine.Algebre;
-using System.Drawing;
+﻿using _2D_engine;
 
 
 namespace MyApp
@@ -15,7 +10,7 @@ namespace MyApp
             World world = new World();
             world.Build();
             _2D_engine.Image img = new _2D_engine.Image(world.RenderScene());
-            img.saveImage("Triangle.png");
+            img.saveImage("Cube.png");
         }
     }
 }

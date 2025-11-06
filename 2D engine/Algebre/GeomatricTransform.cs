@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _2D_engine.Algebre
+﻿namespace _2D_engine.Algebre
 {
     internal class GeomatricTransform
     {
@@ -19,11 +12,11 @@ namespace _2D_engine.Algebre
         }
         public GeomatricTransform()
         {
-            matrix = new Matrice();inverse = new Matrice();
+            matrix = new Matrice(); inverse = new Matrice();
         }
 
-        public bool isIdentity() {  return false; }
-    
+        public bool isIdentity() { return false; }
+
         public static GeomatricTransform Translation(Vecteur translation)
         {
             return new GeomatricTransform(Matrice.Translation(translation), Matrice.Translation(-1 * translation));
@@ -34,8 +27,8 @@ namespace _2D_engine.Algebre
             return new GeomatricTransform(Matrice.Scale(x, y, z), Matrice.Scale(1 / x, 1 / y, 1 / z));
         }
 
-        public static GeomatricTransform RotationX(double angle) 
-        { 
+        public static GeomatricTransform RotationX(double angle)
+        {
             return new GeomatricTransform(Matrice.RotateX(angle), Matrice.RotateX(angle).GetTranspose());
         }
 
@@ -48,9 +41,9 @@ namespace _2D_engine.Algebre
             return new GeomatricTransform(Matrice.RotateZ(angle), Matrice.RotateZ(angle).GetTranspose());
         }
 
-        public static GeomatricTransform Rotation(double angle,Vecteur dir)
+        public static GeomatricTransform Rotation(double angle, Vecteur dir)
         {
-            return new GeomatricTransform(Matrice.Rotate(angle,dir), Matrice.Rotate(angle, dir).GetTranspose());
+            return new GeomatricTransform(Matrice.Rotate(angle, dir), Matrice.Rotate(angle, dir).GetTranspose());
         }
         public static Ray TransformRay(Ray ray, Matrice mat)
         {
@@ -69,7 +62,7 @@ namespace _2D_engine.Algebre
         {
             return new Normal((mat * v).normalization());
         }
-        public void Multiply( GeomatricTransform gt)
+        public void Multiply(GeomatricTransform gt)
         {
             matrix = gt.matrix * matrix;
             inverse = inverse * gt.inverse;

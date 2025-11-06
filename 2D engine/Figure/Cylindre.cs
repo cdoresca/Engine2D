@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _2D_engine.Algebre;
+﻿using _2D_engine.Algebre;
 using _2D_engine.Trace;
 
 namespace _2D_engine.Figure
 {
     internal class Cylindre : Forme
     {
-        double rayon,height;
+        double rayon, height;
 
-        public Cylindre(double r,double h) 
+        public Cylindre(double r, double h)
         {
             rayon = r;
             height = h;
@@ -36,7 +31,6 @@ namespace _2D_engine.Figure
             info = null;
 
             Ray localRay = GeomatricTransform.TransformRay(ray, transform.inverse);
-            if (!box.Intersects(localRay)) return false;
 
             double a = localRay.directeur[0] * localRay.directeur[0] + localRay.directeur[2] * localRay.directeur[2];
             double b = 2 * (localRay.origine[0] * localRay.directeur[0] + localRay.origine[2] * localRay.directeur[2]);
@@ -73,7 +67,7 @@ namespace _2D_engine.Figure
 
         public override double Surface()
         {
-            return 2 * Math.PI * rayon * rayon + 2 *Math.PI * rayon * height;
+            return 2 * Math.PI * rayon * rayon + 2 * Math.PI * rayon * height;
         }
     }
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace _2D_engine
 {
@@ -12,9 +7,9 @@ namespace _2D_engine
         Bitmap img;
         public Image(Bitmap img)
         {
-            this.img = img; 
+            this.img = img;
         }
-        public void saveImage( string name)
+        public void saveImage(string name)
         {
             string projectDir = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName;
 

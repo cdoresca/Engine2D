@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _2D_engine.Algebre;
+﻿using _2D_engine.Algebre;
 using _2D_engine.Trace;
 
 namespace _2D_engine.Figure
@@ -12,7 +7,7 @@ namespace _2D_engine.Figure
     {
         double rayon;
         double hauteur;
-        public Cone(double r,double h)
+        public Cone(double r, double h)
         {
             rayon = r;
             hauteur = h;
@@ -35,11 +30,10 @@ namespace _2D_engine.Figure
 
             Ray localRay = GeomatricTransform.TransformRay(ray, transform.matrix);
 
-            if (!box.Intersects(localRay)) return false;
 
             double k = rayon / hauteur;
 
-            double a = localRay.directeur[0] * localRay.directeur[0] + localRay.directeur[2] * localRay.directeur[2] 
+            double a = localRay.directeur[0] * localRay.directeur[0] + localRay.directeur[2] * localRay.directeur[2]
                 - k * k * localRay.directeur[1] * localRay.directeur[1];
             double b = 2 * (localRay.directeur[0] * localRay.origine[0] + localRay.directeur[2] * localRay.origine[2]
                 - k * k * localRay.directeur[1] * localRay.origine[1]);
@@ -65,7 +59,7 @@ namespace _2D_engine.Figure
                 }
             }
 
-            
+
 
             Algebre.Point localHit = localRay.at(t);
 

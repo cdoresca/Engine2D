@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _2D_engine.Algebre
+﻿namespace _2D_engine.Algebre
 {
     internal class Matrice3x3
     {
@@ -40,7 +33,7 @@ namespace _2D_engine.Algebre
                     { col1[0], col2[0], col3[0]},
                     { col1[1], col2[1], col3[1]},
                     { col1[2], col2[2], col3[2] }
-                    
+
             };
             isIdentity = IsIdentity();
             Transpose();

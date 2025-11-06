@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
-
-namespace _2D_engine.Algebre
+﻿namespace _2D_engine.Algebre
 {
     internal class Matrice
     {
@@ -110,7 +102,7 @@ namespace _2D_engine.Algebre
             };
             return new Matrice(tab);
         }
-        public static  Matrice RotateY(double angle)
+        public static Matrice RotateY(double angle)
         {
             double rad = angle * 2 * Math.PI / 360.0;
             double[,] tab = { { Math.Cos(rad), 0, -Math.Sin(rad), 0},
@@ -132,7 +124,7 @@ namespace _2D_engine.Algebre
             return new Matrice(tab);
         }
 
-        public static  Matrice Rotate(double angle, Vecteur directeur)
+        public static Matrice Rotate(double angle, Vecteur directeur)
         {
             if (directeur * directeur == 0)
                 throw new ArgumentException("Le vecteur directeur ne peut pas être nul.");
@@ -159,11 +151,11 @@ namespace _2D_engine.Algebre
             double x = a[0, 0] * v[0] + a[0, 1] * v[1] + a[0, 2] * v[2];
             double y = a[1, 0] * v[0] + a[1, 1] * v[1] + a[1, 2] * v[2];
             double z = a[2, 0] * v[0] + a[2, 1] * v[1] + a[2, 2] * v[2];
-            
+
             return new Vecteur(x, y, z);
         }
 
-        
+
         public static Point operator *(Matrice a, Algebre.Point b)
         {
             double x = a[0, 0] * b[0] + a[0, 1] * b[1] + a[0, 2] * b[2] + a[0, 3] * 1;
