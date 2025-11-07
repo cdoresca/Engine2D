@@ -94,6 +94,10 @@
         {
             return new Vecteur(b.x / a, b.y / a, b.z / a);
         }
+        public static Vecteur operator /(double a, Vecteur b)
+        {
+            return new Vecteur(a / b.x, a / b.y, a / b.z);
+        }
 
         public static Normal operator %(Vecteur a, Vecteur b)
         {

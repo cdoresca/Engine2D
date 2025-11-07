@@ -1,5 +1,6 @@
 ﻿using _2D_engine.Algebre;
 using _2D_engine.Figure;
+using GT = _2D_engine.Algebre.GeomatricTransform;
 
 namespace _2D_engine.Acceleration
 {
@@ -32,7 +33,12 @@ namespace _2D_engine.Acceleration
         {
             if (!boundingBox(ray, out double tmin)) return false;
 
-            Ray localRay = GT.TransformRay(ray, transform.matrix);
+            Point first = ray.at(tmin);
+
+            int in_x = SpaceToCell(first, 0);
+            int in_y = SpaceToCell(first, 1);
+            int in_z = SpaceToCell(first, 2);
+
 
 
 
