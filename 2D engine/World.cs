@@ -1,7 +1,7 @@
-﻿using System.Drawing;
-using _2D_engine.Algebre;
+﻿using _2D_engine.Algebre;
 using _2D_engine.Figure;
 using _2D_engine.Trace;
+using System.Drawing;
 
 namespace _2D_engine
 {
@@ -66,7 +66,7 @@ namespace _2D_engine
         {
             Color colorHit = backgroundColor.color;
             double tmin = ray.max;
-            bool found = false; ;
+            bool found = false;
 
             foreach (var item in formeList)
             {

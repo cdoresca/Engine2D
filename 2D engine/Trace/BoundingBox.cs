@@ -13,11 +13,11 @@ namespace _2D_engine.Trace
         {
             Random rnd = new Random();
 
-            max = new Algebre.Point(rnd.Next(), rnd.Next(), rnd.Next());
-            min = new Algebre.Point(rnd.Next(), rnd.Next(), rnd.Next());
+            max = new Point(rnd.Next(), rnd.Next(), rnd.Next());
+            min = new Point(rnd.Next(), rnd.Next(), rnd.Next());
         }
 
-        public BoundingBox(Algebre.Point p1, Algebre.Point p2)
+        public BoundingBox(Point p1, Point p2)
         {
             max = p1 > p2 ? p1 : p2;
             min = p1 > p2 ? p2 : p1;
@@ -25,7 +25,15 @@ namespace _2D_engine.Trace
 
         public bool Overlaps(BoundingBox other)
         {
-            return other.min > min || other.max < max || (other.max <= max && other.min < max) || (other.min >= min && other.max > min);
+            for (int i = 0; i < 3; i++)
+            {
+                if (other.max[i] < min[i] || other.min[i] > max[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+
         }
 
         public bool Contains(Algebre.Point point)
@@ -36,6 +44,27 @@ namespace _2D_engine.Trace
         public bool Intersects(Ray r)
         {
             double t0, t1, tmax = r.max, tmin = r.min;
+
+            for (int i = 0; i < 3; i++)
+            {
+                t0 = (min[i] - r.origine[i]) / r.directeur[i];
+                t1 = (max[i] - r.origine[i]) / r.directeur[i];
+
+                if (t0 > t1)
+                {
+                    (t0, t1) = (t1, t0);
+                }
+
+                tmin = Math.Max(t0, tmin);
+                tmax = Math.Min(t1, tmax);
+            }
+
+            return tmax >= tmin;
+        }
+        public bool Intersects(Ray r, out double tmin)
+        {
+            double t0, t1, tmax = r.max;
+            tmin = r.min;
 
             for (int i = 0; i < 3; i++)
             {
@@ -80,6 +109,21 @@ namespace _2D_engine.Trace
             }
 
             return new BoundingBox(p0, p1);
+        }
+
+        public List<Point> Sommet()
+        {
+            List<Point> corners = new List<Point>();
+            for (int i = 0; i < 8; ++i)
+            {
+
+                float x = (float)(((i & 1) != 0) ? max[0] : min[0]);
+                float y = (float)(((i & 2) != 0) ? max[1] : min[1]);
+                float z = (float)(((i & 4) != 0) ? max[2] : min[2]);
+
+                corners.Add(new Point(x, y, z));
+            }
+            return corners;
         }
     }
 }
