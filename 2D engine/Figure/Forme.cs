@@ -47,16 +47,6 @@ namespace _2D_engine.Figure
             if (!box.Intersects(localRay)) return false;
             return true;
         }
-        public bool boundingBox(Ray ray, out double t)
-        {
-            Ray localRay = GT.TransformRay(ray, transform.matrix);
-            if (!box.Intersects(localRay, out double tmin))
-            {
-                t = tmin;
-                return false;
-            }
-            t = tmin;
-            return true;
-        }
+       
     }
 }

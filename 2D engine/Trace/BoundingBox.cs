@@ -61,27 +61,6 @@ namespace _2D_engine.Trace
 
             return tmax >= tmin;
         }
-        public bool Intersects(Ray r, out double tmin)
-        {
-            double t0, t1, tmax = r.max;
-            tmin = r.min;
-
-            for (int i = 0; i < 3; i++)
-            {
-                t0 = (min[i] - r.origine[i]) / r.directeur[i];
-                t1 = (max[i] - r.origine[i]) / r.directeur[i];
-
-                if (t0 > t1)
-                {
-                    (t0, t1) = (t1, t0);
-                }
-
-                tmin = Math.Max(t0, tmin);
-                tmax = Math.Min(t1, tmax);
-            }
-
-            return tmax >= tmin;
-        }
 
         public BoundingBox Combine(BoundingBox aabb)
         {

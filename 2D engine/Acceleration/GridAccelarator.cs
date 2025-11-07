@@ -10,7 +10,7 @@ namespace _2D_engine.Acceleration
         int[] nCell = new int[3];
         Vecteur cellWidth;
         Vecteur invCellWidth;
-        List<List<Cell>> cell;
+        Cell[,,] cell;
 
         GridAccelarator(List<Forme> obj) : base(obj)
         {
@@ -31,17 +31,54 @@ namespace _2D_engine.Acceleration
 
         public bool Intersect(Ray ray)
         {
-            if (!boundingBox(ray, out double tmin)) return false;
+            if (!boundingBox(ray)) return false;
 
-            Point first = ray.at(tmin);
+            
 
-            int in_x = SpaceToCell(first, 0);
-            int in_y = SpaceToCell(first, 1);
-            int in_z = SpaceToCell(first, 2);
+            int x = SpaceToCell(ray.origine, 0);
+            int y = SpaceToCell(ray.origine, 1);
+            int z = SpaceToCell(ray.origine, 2);
+            
+            Vecteur entree = new Vecteur(x, y, z);  
+            Vecteur step = new Vecteur();
+            Vecteur next = new Vecteur();
+            Vecteur tmax = new Vecteur();
+            Vecteur tdelta = new Vecteur();
+          
 
+            for (int i = 0; i < 3; i++) {
+                if (ray.directeur[i] > 0) step[i] = 1;
+                else if(ray.directeur[i] < 0) step[i] = -1;
+                else step[i] = 0;
 
+                if (ray.directeur[i] > 0) next[i] = box.min[i] + (entree[i] + 1) * cellWidth[i];
+                else next[i] = box.min[i] + entree[i] * cellWidth[i];
 
+                tmax[i] = (next[i] - ray.origine[i]) / ray.directeur[i];
 
+                tdelta[i] = cellWidth[i] / Math.Abs(ray.directeur[i]);
+            }
+
+            while (true)
+            {
+                if (!cell[x, y, z].Intersect(ray)) return false;
+
+                if (tmax[0] < tmax[1] && tmax[0] < tmax[2]) 
+                {
+                    x += (int)step[0];
+                    tmax[0] += tdelta[0];         
+                }
+                else if (tmax[1] < tmax[2])
+                {
+                    y += (int)step[1];
+                    tmax[1] += tdelta[1];
+                }
+                else
+                {
+                    z += (int)step[2];
+                    tmax[2] += tdelta[2];
+                }
+            }
         }
 
         public void CreateBox()
@@ -94,29 +131,22 @@ namespace _2D_engine.Acceleration
             CalculNombreCellule();
             TailleCell();
 
-            cell = new List<List<Cell>>();
+            cell = new Cell[nCell[0], nCell[1], nCell[3]];
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < nCell[0]; i++)
             {
-
-                cell[i] = new List<Cell>();
-
-                for (int j = 0; j < nCell[i]; j++)
+                for (int j = 0; j < nCell[1]; j++)
                 {
-                    cell[i].Add(new Cell());
+                    for(int k = 0; k < nCell[2]; k++)
+                        cell[i,j,k] = new Cell();
                 }
             }
 
             foreach (var obj in formes)
             {
-
                 foreach (var coin in obj.box.Sommet())
-                {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        cell[i][SpaceToCell(coin, i)].Add(obj);
-
-                    }
+                {                    
+                       cell[SpaceToCell(coin, 0), SpaceToCell(coin, 1), SpaceToCell(coin, 2)].Add(obj);                  
                 }
             }
         }
