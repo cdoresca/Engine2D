@@ -1,6 +1,7 @@
 ﻿using _2D_engine.Algebre;
 using _2D_engine.Figure;
 using GT = _2D_engine.Algebre.GeomatricTransform;
+using _2D_engine.Trace;
 
 namespace _2D_engine.Acceleration
 {
@@ -12,7 +13,7 @@ namespace _2D_engine.Acceleration
         Vecteur invCellWidth;
         Cell[,,] cell;
 
-        GridAccelarator(List<Forme> obj) : base(obj)
+        public GridAccelarator(List<Forme> obj) : base(obj)
         {
             BuildCell();
 
@@ -29,8 +30,9 @@ namespace _2D_engine.Acceleration
             return Math.Max(0, Math.Min(v, nCell[axis] - 1));
         }
 
-        public bool Intersect(Ray ray)
+        public override bool Intersection(Ray ray, out Intersection info)
         {
+            info = null;
             if (!boundingBox(ray)) return false;
 
             
@@ -59,26 +61,30 @@ namespace _2D_engine.Acceleration
                 tdelta[i] = cellWidth[i] / Math.Abs(ray.directeur[i]);
             }
 
-            while (true)
+            while (x <= nCell[0] || y <= nCell[1] || z <= nCell[2])
             {
-                if (!cell[x, y, z].Intersect(ray)) return false;
-
-                if (tmax[0] < tmax[1] && tmax[0] < tmax[2]) 
-                {
-                    x += (int)step[0];
-                    tmax[0] += tdelta[0];         
-                }
-                else if (tmax[1] < tmax[2])
-                {
-                    y += (int)step[1];
-                    tmax[1] += tdelta[1];
-                }
+                if (cell[x, y, z].Intersect(ray, out info)) return true;
                 else
                 {
-                    z += (int)step[2];
-                    tmax[2] += tdelta[2];
+                    if (tmax[0] < tmax[1] && tmax[0] < tmax[2])
+                    {
+                        x += (int)step[0];
+                        tmax[0] += tdelta[0];
+                    }
+                    else if (tmax[1] < tmax[2])
+                    {
+                        y += (int)step[1];
+                        tmax[1] += tdelta[1];
+                    }
+                    else
+                    {
+                        z += (int)step[2];
+                        tmax[2] += tdelta[2];
+                    }
                 }
             }
+
+            return false;
         }
 
         public void CreateBox()

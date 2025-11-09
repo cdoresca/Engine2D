@@ -8,8 +8,7 @@ namespace MyApp
         static void Main(string[] args)
         {
             World world = new World();
-            world.Build();
-            _2D_engine.Image img = new _2D_engine.Image(world.RenderScene());
+            Image img = new Image(world.RenderScene());
             img.saveImage("Cube.png");
         }
     }

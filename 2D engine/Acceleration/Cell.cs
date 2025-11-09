@@ -13,8 +13,9 @@ namespace _2D_engine.Acceleration
 
         public int Count { get { return objects.Count; } }
 
-        public bool Intersect(Ray ray)
+        public bool Intersect(Ray ray, out Intersection info)
         {
+            info = null;
             double tmin = ray.max;
             bool found = false;
 
@@ -23,8 +24,9 @@ namespace _2D_engine.Acceleration
                 if (item.boundingBox(ray))
                 {
 
-                    if (item.Intersection(ray, out Intersection info))
+                    if (item.Intersection(ray, out info))
                     {
+                        
                         if (info.t < tmin)
                         {
                             tmin = info.t;

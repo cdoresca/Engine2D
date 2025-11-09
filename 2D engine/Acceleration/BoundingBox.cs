@@ -1,13 +1,13 @@
 ﻿using _2D_engine.Algebre;
 
-namespace _2D_engine.Trace
+namespace _2D_engine.Acceleration
 {
     internal class BoundingBox
     {
 
-        public Algebre.Point max { get; set; }
+        public Point max { get; set; }
 
-        public Algebre.Point min { get; set; }
+        public Point min { get; set; }
 
         public BoundingBox()
         {
@@ -36,7 +36,7 @@ namespace _2D_engine.Trace
 
         }
 
-        public bool Contains(Algebre.Point point)
+        public bool Contains(Point point)
         {
             return point > min && point < max;
         }
@@ -64,8 +64,8 @@ namespace _2D_engine.Trace
 
         public BoundingBox Combine(BoundingBox aabb)
         {
-            Algebre.Point p0 = min;
-            Algebre.Point p1 = max;
+            Point p0 = min;
+            Point p1 = max;
 
             for (int i = 0; i < 3; i++)
             {
@@ -75,11 +75,11 @@ namespace _2D_engine.Trace
 
             return new BoundingBox(p0, p1);
         }
-        public BoundingBox Combine(Algebre.Point p)
+        public BoundingBox Combine(Point p)
         {
 
-            Algebre.Point p0 = new Algebre.Point();
-            Algebre.Point p1 = new Algebre.Point();
+            Point p0 = new Point();
+            Point p1 = new Point();
 
             for (int i = 0; i < 3; i++)
             {
@@ -96,9 +96,9 @@ namespace _2D_engine.Trace
             for (int i = 0; i < 8; ++i)
             {
 
-                float x = (float)(((i & 1) != 0) ? max[0] : min[0]);
-                float y = (float)(((i & 2) != 0) ? max[1] : min[1]);
-                float z = (float)(((i & 4) != 0) ? max[2] : min[2]);
+                float x = (float)((i & 1) != 0 ? max[0] : min[0]);
+                float y = (float)((i & 2) != 0 ? max[1] : min[1]);
+                float z = (float)((i & 4) != 0 ? max[2] : min[2]);
 
                 corners.Add(new Point(x, y, z));
             }

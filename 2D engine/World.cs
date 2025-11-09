@@ -1,20 +1,28 @@
 ﻿using _2D_engine.Algebre;
 using _2D_engine.Figure;
+using _2D_engine.Illumination;
 using _2D_engine.Trace;
 using System.Drawing;
+using _2D_engine.Acceleration;
 
 namespace _2D_engine
 {
     internal class World
     {
-
         ViewPlane plane;
-        public Couleur backgroundColor { get; set; }
 
+        Couleur backgroundColor;
 
         List<Forme> formeList;
 
-        public World() { }
+        List<Light> lights;
+
+        GridAccelarator acceleration;
+
+        DirectIllumination illumination;
+
+
+        public World() { Build(); }
         public void Build()
         {
             plane = new ViewPlane();
@@ -25,9 +33,17 @@ namespace _2D_engine
 
             backgroundColor = new Couleur(Color.FromArgb(255, 0, 0, 0));
 
+            formeList = new List<Forme>();
             AddForme();
-
             foreach (var forme in formeList) { forme.world = this; }
+
+            lights = new List<Light>();
+            addLight();
+            foreach (var light in lights) { light.setWorld(this); }
+
+            illumination = new DirectIllumination(this);
+
+            acceleration = new GridAccelarator(formeList);
 
             Console.WriteLine($"Scène construite avec {formeList.Count} forme(s).");
         }
@@ -52,45 +68,16 @@ namespace _2D_engine
 
                     ray = new Ray(new Algebre.Point(x, y, 100), new Vecteur(0, 0, -1));
 
-                    colorPixel = TracerRay(ray);
+                    colorPixel = illumination.tracerRay(ray).color;
 
                     img.SetPixel(i, j, colorPixel);
                 }
-
             }
-
             return img;
         }
 
-        public Color TracerRay(Ray ray)
+        void AddForme()
         {
-            Color colorHit = backgroundColor.color;
-            double tmin = ray.max;
-            bool found = false;
-
-            foreach (var item in formeList)
-            {
-                if (item.boundingBox(ray))
-                {
-
-                    if (item.Intersection(ray, out Intersection info))
-                    {
-                        if (info.t < tmin)
-                        {
-                            tmin = info.t;
-                            colorHit = info.couleur * (ray.directeur * info.normal);
-                            found = true;
-                        }
-                    }
-                }
-
-            }
-            return found ? colorHit : backgroundColor.color;
-        }
-        public void AddForme()
-        {
-            formeList = new List<Forme>();
-
             Sphere sphere = new Sphere(200);
             Plan plan = new Plan();
             Cube cube = new Cube(600);
@@ -115,9 +102,20 @@ namespace _2D_engine
             disque.color = new Couleur(Color.Red);
             cone.color = new Couleur(Color.Red);
             triangle.color = new Couleur(Color.Red);
-
+        }
+        
+        void addLight()
+        {
+            lights.Add(new PointLight());
         }
 
+        public List<Forme> GetFormes() { return formeList; }
+
+        public List<Light> GetLights() { return lights; }
+
+        public Couleur GetCouleur() { return backgroundColor; }
+
+        public Accelarator GetAccelarator() { return acceleration; }
     }
 
 

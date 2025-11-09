@@ -1,4 +1,6 @@
-﻿using _2D_engine.Algebre;
+﻿using _2D_engine.Acceleration;
+using _2D_engine.Algebre;
+using _2D_engine.Illumination;
 using _2D_engine.Trace;
 using GT = _2D_engine.Algebre.GeomatricTransform;
 
@@ -17,7 +19,7 @@ namespace _2D_engine.Figure
 
         public abstract double Surface();
 
-        public void setCenter(Algebre.Point p) { centre = p; }
+        public void setCenter(Point p) { centre = p; }
 
         public (double, double) GetUV(Normal n)
         {
@@ -29,7 +31,7 @@ namespace _2D_engine.Figure
 
             return (u, v);
         }
-        public abstract Normal CalculNormal(Algebre.Point point);
+        public abstract Normal CalculNormal(Point point);
 
 
         public void AddTransform(params GT[] transforms)

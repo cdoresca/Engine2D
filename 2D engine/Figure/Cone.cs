@@ -1,5 +1,6 @@
 ﻿using _2D_engine.Algebre;
 using _2D_engine.Trace;
+using _2D_engine.Acceleration;
 
 namespace _2D_engine.Figure
 {
