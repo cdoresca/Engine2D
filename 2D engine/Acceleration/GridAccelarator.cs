@@ -2,6 +2,7 @@
 using _2D_engine.Figure;
 using GT = _2D_engine.Algebre.GeomatricTransform;
 using _2D_engine.Trace;
+using System.Transactions;
 
 namespace _2D_engine.Acceleration
 {
@@ -12,11 +13,13 @@ namespace _2D_engine.Acceleration
         Vecteur cellWidth;
         Vecteur invCellWidth;
         Cell[,,] cell;
+        BoundingBox box;
 
         public GridAccelarator(List<Forme> obj) : base(obj)
         {
             BuildCell();
-
+            
+            
         }
 
         public double CellToSpace(int a_p, int axis)
@@ -33,13 +36,14 @@ namespace _2D_engine.Acceleration
         public override bool Intersection(Ray ray, out Intersection info)
         {
             info = null;
-            if (!boundingBox(ray)) return false;
+            double t;
+            if (!box.Intersects(ray, out t)) return false;
 
             
 
-            int x = SpaceToCell(ray.origine, 0);
-            int y = SpaceToCell(ray.origine, 1);
-            int z = SpaceToCell(ray.origine, 2);
+            int x = SpaceToCell(ray.at(t), 0);
+            int y = SpaceToCell(ray.at(t), 1);
+            int z = SpaceToCell(ray.at(t), 2);
             
             Vecteur entree = new Vecteur(x, y, z);  
             Vecteur step = new Vecteur();
@@ -61,7 +65,7 @@ namespace _2D_engine.Acceleration
                 tdelta[i] = cellWidth[i] / Math.Abs(ray.directeur[i]);
             }
 
-            while (x <= nCell[0] || y <= nCell[1] || z <= nCell[2])
+            while (x >= 0 && x < nCell[0] && y >= 0 && y < nCell[1] && z >= 0 && z < nCell[2])
             {
                 if (cell[x, y, z].Intersect(ray, out info)) return true;
                 else
@@ -89,11 +93,14 @@ namespace _2D_engine.Acceleration
 
         public void CreateBox()
         {
-            box = formes[0].box;
+            
 
-            for (int i = 0; i < formes.Count; i++)
+            box = formes[0].WorldBox;
+
+            foreach(var forme in formes)
             {
-                box = box.Combine(formes[i].box);
+              
+                box = box.Combine(forme.WorldBox);
             }
 
         }
@@ -106,14 +113,14 @@ namespace _2D_engine.Acceleration
                 0 : longeurAxe[1] > longeurAxe[2] ?
                 1 : 2;
 
-            nCell[maxAxe] = (int)(3 * Math.Pow(formes.Count, 1 / 3));
+            nCell[maxAxe] = (int)(3 * Math.Cbrt(formes.Count));
 
-            for (int i = 0; i < formes.Count; i++)
+            for (int i = 0; i < 3; i++)
             {
 
                 if (i != maxAxe)
                 {
-                    nCell[i] = (int)((longeurAxe[i] * nCell[maxAxe]) / longeurAxe[maxAxe]);
+                    nCell[i] = Math.Max(1, (int)((longeurAxe[i] * nCell[maxAxe]) / longeurAxe[maxAxe]));
                 }
             }
         }
@@ -137,7 +144,7 @@ namespace _2D_engine.Acceleration
             CalculNombreCellule();
             TailleCell();
 
-            cell = new Cell[nCell[0], nCell[1], nCell[3]];
+            cell = new Cell[nCell[0], nCell[1], nCell[2]];
 
             for (int i = 0; i < nCell[0]; i++)
             {
@@ -147,13 +154,21 @@ namespace _2D_engine.Acceleration
                         cell[i,j,k] = new Cell();
                 }
             }
-
-            foreach (var obj in formes)
+            foreach (var item in formes)
             {
-                foreach (var coin in obj.box.Sommet())
-                {                    
-                       cell[SpaceToCell(coin, 0), SpaceToCell(coin, 1), SpaceToCell(coin, 2)].Add(obj);                  
-                }
+                Point min = item.WorldBox.min;
+                Point max = item.WorldBox.max;
+                int xMin = SpaceToCell(min, 0);
+                int xMax = SpaceToCell(max, 0);
+                int yMin = SpaceToCell(min, 1);
+                int yMax = SpaceToCell(max, 1);
+                int zMin = SpaceToCell(min, 2);
+                int zMax = SpaceToCell(max, 2);
+
+                for (int x = xMin; x <= xMax; x++)
+                    for (int y = yMin; y <= yMax; y++)
+                        for (int z = zMin; z <= zMax; z++)
+                            cell[x, y, z].Add(item);
             }
         }
 

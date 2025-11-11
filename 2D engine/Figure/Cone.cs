@@ -16,10 +16,11 @@ namespace _2D_engine.Figure
             Algebre.Point min = new Algebre.Point(centre[0] - rayon, centre[1] - hauteur, centre[2] - rayon);
             Algebre.Point max = new Algebre.Point(centre[0] + rayon, centre[1] + hauteur, centre[2] + rayon);
             box = new BoundingBox(min, max);
+            WorldBox = box;
             transform = new GeomatricTransform();
         }
 
-        public override Normal CalculNormal(Point point)
+        public override Normal GetNormal(Point point)
         {
             double k = rayon / hauteur;
             return new Normal(point[0], -k * k * point[1], point[2]);
@@ -29,7 +30,7 @@ namespace _2D_engine.Figure
         {
             info = null;
 
-            Ray localRay = GeomatricTransform.TransformRay(ray, transform.matrix);
+            Ray localRay = GeomatricTransform.TransformRay(ray, transform.inverse);
 
 
             double k = rayon / hauteur;
@@ -67,10 +68,10 @@ namespace _2D_engine.Figure
             if (localHit[1] < 0 || localHit[1] > hauteur)
                 return false;
 
-            Normal localNormal = CalculNormal(localHit);
+            Normal localNormal = GetNormal(localHit);
 
 
-            Algebre.Point pointWorld = GeomatricTransform.TransformPoint(localHit, transform.inverse);
+            Algebre.Point pointWorld = GeomatricTransform.TransformPoint(localHit, transform.matrix);
             Vecteur vecteurWorld = GeomatricTransform.TransformNormal(localNormal, transform.inverse.GetTranspose()).normalization();
             Normal normalWorld = new Normal(vecteurWorld);
             if (normalWorld * ray.directeur > 0) normalWorld = new Normal(-1 * normalWorld);

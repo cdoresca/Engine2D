@@ -62,6 +62,28 @@ namespace _2D_engine.Acceleration
             return tmax >= tmin;
         }
 
+        public bool Intersects(Ray r,out double t)
+        {
+            double t0, t1, tmax = r.max, tmin = r.min;
+
+            for (int i = 0; i < 3; i++)
+            {
+                t0 = (min[i] - r.origine[i]) / r.directeur[i];
+                t1 = (max[i] - r.origine[i]) / r.directeur[i];
+
+                if (t0 > t1)
+                {
+                    (t0, t1) = (t1, t0);
+                }
+
+                tmin = Math.Max(t0, tmin);
+                tmax = Math.Min(t1, tmax);
+            }
+            t = tmin;
+
+            return tmax >= tmin;
+        }
+
         public BoundingBox Combine(BoundingBox aabb)
         {
             Point p0 = min;
@@ -90,19 +112,18 @@ namespace _2D_engine.Acceleration
             return new BoundingBox(p0, p1);
         }
 
-        public List<Point> Sommet()
+        public Point[] Sommet()
         {
-            List<Point> corners = new List<Point>();
-            for (int i = 0; i < 8; ++i)
-            {
-
-                float x = (float)((i & 1) != 0 ? max[0] : min[0]);
-                float y = (float)((i & 2) != 0 ? max[1] : min[1]);
-                float z = (float)((i & 4) != 0 ? max[2] : min[2]);
-
-                corners.Add(new Point(x, y, z));
-            }
-            return corners;
+            return new Point[]{
+            new Point(min[0], min[1], min[2]),
+            new Point(max[0], min[1], min[2]),
+            new Point(min[0], max[1], min[2]),
+            new Point(min[0], min[1], max[2]),
+            new Point(max[0], max[1], min[2]),
+            new Point(min[0], max[1], max[2]),
+            new Point(max[0], min[1], max[2]),
+            new Point(max[0], max[1], max[2])
+            };
         }
     }
 }

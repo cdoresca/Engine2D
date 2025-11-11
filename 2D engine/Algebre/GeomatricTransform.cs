@@ -15,7 +15,7 @@
             matrix = new Matrice(); inverse = new Matrice();
         }
 
-        public bool isIdentity() { return false; }
+        
 
         public static GeomatricTransform Translation(Vecteur translation)
         {
@@ -64,8 +64,8 @@
         }
         public void Multiply(GeomatricTransform gt)
         {
-            matrix = gt.matrix * matrix;
-            inverse = inverse * gt.inverse;
+            matrix = matrix * gt.matrix;
+            inverse = gt.inverse * inverse;
         }
     }
 

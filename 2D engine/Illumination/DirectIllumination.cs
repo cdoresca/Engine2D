@@ -14,46 +14,47 @@ namespace _2D_engine.Illumination
             world = w;
         }
 
-        public Couleur tracerRay(Ray ray) 
+        public Couleur TracerRay(Ray ray)
         {
-            Couleur colorHit = new Couleur();
-            double tmin = ray.max;
-            bool found = false;
+            if (!world.GetAccelarator().Intersection(ray, out Intersection info))
+                return world.GetCouleur();
 
-            if (world.GetAccelarator().Intersection(ray, out Intersection info))
+            Couleur colorHit = new Couleur();
+
+            foreach (Light light in world.GetLights())
             {
-                foreach (Light light in world.GetLights())
+                Vecteur toLight = light.getDirection(info.point);
+                
+
+                if (!shadow(light, new Ray(info.point, toLight), info.objet))
                 {
-                    if (shadow(light,new Ray(light.getPosition(),light.getDirection(info.point)),info.objet))
-                    {
-                        colorHit += info.couleur * light.getRadiance() * Math.Abs(info.normal.norme / light.getDirection(info.point).norme);
-                        found = true;
-                    }
+                    
+                    colorHit += info.couleur * light.getRadiance() * Math.Abs(info.normal * toLight);
                 }
             }
-            return found ? colorHit : world.GetCouleur();
+
+            return colorHit;
         }
 
         bool shadow(Light light, Ray ray, Forme forme)
         {
-            double tmin = ray.max;
-            Intersection info = null;
 
-            foreach (var item in world.GetFormes())
-            {
-                if (item.boundingBox(ray))
+            
+            Vecteur toLight = light.getPosition() - ray.origine;
+
+            foreach(var item in world.GetFormes()) {
+                if (item == forme) continue;
+
+                if (!item.boundingBox(ray)) continue;
+                
+                if(item.Intersection(ray,out Intersection info))
                 {
-                    if(item.Intersection(ray,out info))
-                    {
-                        if(info.t < tmin)
-                        {
-                            tmin =info.t;
-                            
-                        }
-                    }
+                    if (info.t < toLight.norme) return true;
                 }
+                
+            
             }
-            return info.objet == forme;
+            return false;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using _2D_engine.Algebre;
 using _2D_engine.Trace;
+using _2D_engine.Acceleration;
 
 namespace _2D_engine.Figure
 {
@@ -20,6 +21,7 @@ namespace _2D_engine.Figure
 
             box = new BoundingBox(p1, p2);
             box = box.Combine(p3);
+            WorldBox = box;
 
             transform = new GeomatricTransform();
         }
@@ -40,11 +42,11 @@ namespace _2D_engine.Figure
                 Math.Max(p1[2], Math.Max(p2[2], p3[2])));
 
             box = new BoundingBox(min, max);
-
+            WorldBox = box;
             transform = new GeomatricTransform();
         }
 
-        public override Normal CalculNormal(Point point)
+        public override Normal GetNormal(Point point)
         {
             Vecteur v = (p2 - p1) % (p3 - p1);
 
@@ -55,7 +57,7 @@ namespace _2D_engine.Figure
         {
             info = null;
 
-            Ray localRay = GeomatricTransform.TransformRay(ray, transform.matrix);
+            Ray localRay = GeomatricTransform.TransformRay(ray, transform.inverse);
 
 
             Vecteur dir = localRay.directeur;
@@ -71,9 +73,9 @@ namespace _2D_engine.Figure
             if (beta < 0 || gamma < 0 || beta + gamma > 1 || t <= localRay.min || t >= localRay.max) return false;
 
             Point localHit = localRay.at(t);
-            Normal localNormal = CalculNormal(localHit);
+            Normal localNormal = GetNormal(localHit);
 
-            Point pointWorld = GeomatricTransform.TransformPoint(localHit, transform.inverse);
+            Point pointWorld = GeomatricTransform.TransformPoint(localHit, transform.matrix);
             Vecteur vecteurWorld = GeomatricTransform.TransformNormal(localNormal, transform.inverse.GetTranspose()).normalization();
             Normal normalWorld = new Normal(vecteurWorld);
 

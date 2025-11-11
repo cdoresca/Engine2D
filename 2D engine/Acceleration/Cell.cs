@@ -15,22 +15,29 @@ namespace _2D_engine.Acceleration
 
         public bool Intersect(Ray ray, out Intersection info)
         {
+
             info = null;
+
+            if (objects.Count == 0)
+                return false;
+
             double tmin = ray.max;
             bool found = false;
+     
 
             foreach (var item in objects)
             {
                 if (item.boundingBox(ray))
                 {
 
-                    if (item.Intersection(ray, out info))
+                    if (item.Intersection(ray, out Intersection temp))
                     {
                         
-                        if (info.t < tmin)
+                        if (temp.t < tmin)
                         {
-                            tmin = info.t;
+                            tmin = temp.t;
                             found = true;
+                            info = temp;
                         }
                     }
                 }

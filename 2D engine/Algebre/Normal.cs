@@ -15,5 +15,7 @@
         public Normal(Vecteur v) : base(v)
         {
         }
+        
+        
     }
 }

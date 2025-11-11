@@ -1,4 +1,5 @@
 ﻿using _2D_engine.Algebre;
+using _2D_engine.Acceleration;
 using _2D_engine.Trace;
 
 namespace _2D_engine.Figure
@@ -16,6 +17,7 @@ namespace _2D_engine.Figure
                 new Algebre.Point(centre[0] - rayon, centre[1] - rayon, centre[2] - rayon),
                 new Algebre.Point(centre[0] + rayon, centre[1] + rayon, centre[2] + rayon)
             );
+            WorldBox = box;
             transform = new GeomatricTransform();
 
         }
@@ -27,7 +29,7 @@ namespace _2D_engine.Figure
         {
             info = null;
 
-            Ray localRay = GeomatricTransform.TransformRay(ray, transform.matrix);
+            Ray localRay = GeomatricTransform.TransformRay(ray, transform.inverse);
 
             double a, b, c;
             Vecteur l = new Vecteur(localRay.origine);
@@ -59,11 +61,11 @@ namespace _2D_engine.Figure
             Algebre.Point localHit = localRay.at(t);
 
 
-            Algebre.Point pointWorld = GeomatricTransform.TransformPoint(localHit, transform.inverse);
-            Normal normalWorld = GeomatricTransform.TransformNormal(CalculNormal(localHit), transform.inverse);
+            Algebre.Point pointWorld = GeomatricTransform.TransformPoint(localHit, transform.matrix);
+            Normal normalWorld = GeomatricTransform.TransformNormal(GetNormal(localHit), transform.inverse.GetTranspose());
 
 
-            info = new Intersection(t, pointWorld, normalWorld, this, this.color, (0, 0));
+            info = new Intersection(t, pointWorld,normalWorld, this, this.color, (0, 0));
 
 
 
@@ -74,7 +76,7 @@ namespace _2D_engine.Figure
             return 4.0 * Math.PI * rayon * rayon;
         }
 
-        public override Normal CalculNormal(Algebre.Point point)
+        public override Normal GetNormal(Algebre.Point point)
         {
 
             Vecteur n = (point - centre).normalization();

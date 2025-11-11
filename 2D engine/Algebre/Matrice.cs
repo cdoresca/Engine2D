@@ -94,7 +94,7 @@
 
         public static Matrice RotateX(double angle)
         {
-            double rad = angle * 2 * Math.PI / 360.0;
+            double rad = angle  * Math.PI / 180.0;
             double[,] tab = { { 1, 0, 0, 0},
                               { 0, Math.Cos(rad), -Math.Sin(rad), 0},
                               { 0, Math.Sin(rad), Math.Cos(rad), 0},
@@ -104,10 +104,10 @@
         }
         public static Matrice RotateY(double angle)
         {
-            double rad = angle * 2 * Math.PI / 360.0;
-            double[,] tab = { { Math.Cos(rad), 0, -Math.Sin(rad), 0},
+            double rad = angle  * Math.PI / 180.0;
+            double[,] tab = { { Math.Cos(rad), 0, Math.Sin(rad), 0},
                               { 0, 1, 0, 0},
-                              { Math.Sin(rad), 0, Math.Cos(rad), 0},
+                              { -Math.Sin(rad), 0, Math.Cos(rad), 0},
                               { 0, 0, 0, 1}
             };
             return new Matrice(tab);
@@ -115,7 +115,7 @@
 
         public static Matrice RotateZ(double angle)
         {
-            double rad = angle * 2 * Math.PI / 360.0;
+            double rad = angle * Math.PI / 180.0;
             double[,] tab = { {  Math.Cos(rad), -Math.Sin(rad), 0, 0},
                               { Math.Sin(rad), Math.Cos(rad), 0, 0},
                               { 0, 0, 1, 0},
@@ -128,7 +128,7 @@
         {
             if (directeur * directeur == 0)
                 throw new ArgumentException("Le vecteur directeur ne peut pas être nul.");
-            double rad = angle * 2 * Math.PI / 360.0;
+            double rad = angle * Math.PI / 180.0;
             Vecteur dir = directeur.normalization();
             Vecteur col1 = CalculRotate(new Vecteur(1, 0, 0), rad, dir);
             Vecteur col2 = CalculRotate(new Vecteur(0, 1, 0), rad, dir);

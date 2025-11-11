@@ -13,6 +13,8 @@ namespace _2D_engine.Figure
         public Couleur color { get; set; }
         public World world { get; set; }
         public BoundingBox box { get; set; }
+        public BoundingBox WorldBox { get; set; }
+
         public Algebre.Point centre = new Algebre.Point(0, 0, 0);
         public abstract bool Intersection(Ray ray, out Intersection info);
 
@@ -31,7 +33,7 @@ namespace _2D_engine.Figure
 
             return (u, v);
         }
-        public abstract Normal CalculNormal(Point point);
+        public abstract Normal GetNormal(Point point);
 
 
         public void AddTransform(params GT[] transforms)
@@ -40,15 +42,37 @@ namespace _2D_engine.Figure
             {
                 transform.Multiply(t);
             }
+            
+            
+            Point min = new Point(double.MaxValue, double.MaxValue, double.MaxValue);
+            Point max = new Point(double.MinValue, double.MinValue, double.MinValue);
+
+            foreach (var c in box.Sommet())
+            {
+                var transformed = GT.TransformPoint(c, transform.matrix);
+
+                for (int i = 0; i < 3; i++)
+                {
+                    min[i] = Math.Min(min[i], transformed[i]);
+                    max[i] = Math.Max(max[i], transformed[i]);
+                }
+               
+            }
+
+            WorldBox = new BoundingBox(min, max);
 
         }
 
         public bool boundingBox(Ray ray)
         {
-            Ray localRay = GT.TransformRay(ray, transform.matrix);
-            if (!box.Intersects(localRay)) return false;
-            return true;
+            
+            return WorldBox.Intersects(ray);
         }
-       
+
+        public bool boundingBox(Ray ray , out double t)
+        {
+            
+            return WorldBox.Intersects(ray, out t);
+        }
     }
 }

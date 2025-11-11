@@ -66,9 +66,9 @@ namespace _2D_engine
                     x = plane.pixelSize * (i - (plane.width + 1) * 0.5);
                     y = plane.pixelSize * (j - (plane.height + 1) * 0.5);
 
-                    ray = new Ray(new Algebre.Point(x, y, 100), new Vecteur(0, 0, -1));
+                    ray = new Ray(new Algebre.Point(x, y, 1000), new Vecteur(0, 0, -1));
 
-                    colorPixel = illumination.tracerRay(ray).color;
+                    colorPixel = illumination.TracerRay(ray).color;
 
                     img.SetPixel(i, j, colorPixel);
                 }
@@ -76,24 +76,39 @@ namespace _2D_engine
             return img;
         }
 
+        public Couleur TracerRay(Ray ray)
+        {
+            Couleur colorHit = backgroundColor;
+            double tmin = ray.max;
+            bool found = false;
+
+            if (!GetAccelarator().Intersection(ray, out Intersection info))
+                return GetCouleur();
+
+            
+                            colorHit = info.couleur * (ray.directeur * info.normal);
+                            found = true;
+                          
+            return found ? colorHit : backgroundColor;
+        }
         void AddForme()
         {
             Sphere sphere = new Sphere(200);
             Plan plan = new Plan();
-            Cube cube = new Cube(600);
+            Cube cube = new Cube(100);
             Cylindre cylindre = new Cylindre(100, 300);
             Disque disque = new Disque(400, 200);
             Cone cone = new Cone(150, 300);
             Triangle triangle = new Triangle(500, 300);
 
-            sphere.AddTransform(GeomatricTransform.Translation(new Vecteur(0, 0, 0)));
+            sphere.AddTransform(GeomatricTransform.Translation(new Vecteur(200, 0, 0)));
             plan.AddTransform(GeomatricTransform.RotationX(25));
-            cube.AddTransform(new GeomatricTransform[] { GeomatricTransform.RotationX(45), GeomatricTransform.RotationY(45) });
-            cylindre.AddTransform(GeomatricTransform.Scale(2, 1, 1));
-            disque.AddTransform(GeomatricTransform.Rotation(45, new Vecteur(1, 1, 0)));
+            cube.AddTransform(new GeomatricTransform[] { GeomatricTransform.RotationX(45) });
+            cylindre.AddTransform(GeomatricTransform.Scale(4, 1, 1));
+            disque.AddTransform(new GeomatricTransform[] { GeomatricTransform.RotationX(25), GeomatricTransform.RotationZ(25) });
             triangle.AddTransform(GeomatricTransform.RotationX(25));
 
-            formeList.AddRange(new Forme[] { cube });
+            formeList.AddRange(new Forme[] {sphere,cone });
 
             sphere.color = new Couleur(Color.Red);
             plan.color = new Couleur(Color.Red);
@@ -106,7 +121,7 @@ namespace _2D_engine
         
         void addLight()
         {
-            lights.Add(new PointLight());
+            lights.Add(new PointLight(100,new Couleur(Color.White),new Algebre.Point(0,0,600)));
         }
 
         public List<Forme> GetFormes() { return formeList; }
@@ -115,7 +130,10 @@ namespace _2D_engine
 
         public Couleur GetCouleur() { return backgroundColor; }
 
-        public Accelarator GetAccelarator() { return acceleration; }
+        public Accelarator GetAccelarator()
+        {
+          return acceleration;
+        }
     }
 
 
