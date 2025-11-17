@@ -26,7 +26,7 @@ namespace _2D_engine.Illumination
                 Vecteur toLight = light.getDirection(info.point);
                 
 
-                if (!shadow(light, new Ray(info.point, toLight), info.objet))
+                if (!Shadow(light, new Ray(info.point, toLight), info.objet))
                 {
                     
                     colorHit += info.couleur * light.getRadiance() * Math.Abs(info.normal * toLight);
@@ -35,8 +35,8 @@ namespace _2D_engine.Illumination
 
             return colorHit;
         }
-
-        bool shadow(Light light, Ray ray, Forme forme)
+        
+        bool Shadow(Light light, Ray ray, Forme forme)
         {
 
             
@@ -56,5 +56,7 @@ namespace _2D_engine.Illumination
             }
             return false;
         }
+
+        
     }
 }

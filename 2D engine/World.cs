@@ -4,6 +4,7 @@ using _2D_engine.Illumination;
 using _2D_engine.Trace;
 using System.Drawing;
 using _2D_engine.Acceleration;
+using _2D_engine.Sample;
 
 namespace _2D_engine
 {
@@ -20,6 +21,8 @@ namespace _2D_engine
         GridAccelarator acceleration;
 
         DirectIllumination illumination;
+
+        Sampler sampler;
 
 
         public World() { Build(); }
@@ -44,6 +47,8 @@ namespace _2D_engine
             illumination = new DirectIllumination(this);
 
             acceleration = new GridAccelarator(formeList);
+
+            sampler = new RandomSampler(plane.width * plane.height * 3);
 
             Console.WriteLine($"Scène construite avec {formeList.Count} forme(s).");
         }
@@ -76,21 +81,6 @@ namespace _2D_engine
             return img;
         }
 
-        public Couleur TracerRay(Ray ray)
-        {
-            Couleur colorHit = backgroundColor;
-            double tmin = ray.max;
-            bool found = false;
-
-            if (!GetAccelarator().Intersection(ray, out Intersection info))
-                return GetCouleur();
-
-            
-                            colorHit = info.couleur * (ray.directeur * info.normal);
-                            found = true;
-                          
-            return found ? colorHit : backgroundColor;
-        }
         void AddForme()
         {
             Sphere sphere = new Sphere(200);
@@ -101,14 +91,14 @@ namespace _2D_engine
             Cone cone = new Cone(150, 300);
             Triangle triangle = new Triangle(500, 300);
 
-            sphere.AddTransform(GeomatricTransform.Translation(new Vecteur(200, 0, 0)));
+            sphere.AddTransform(GeomatricTransform.Translation(new Vecteur(0, 0, 0)));
             plan.AddTransform(GeomatricTransform.RotationX(25));
             cube.AddTransform(new GeomatricTransform[] { GeomatricTransform.RotationX(45) });
             cylindre.AddTransform(GeomatricTransform.Scale(4, 1, 1));
             disque.AddTransform(new GeomatricTransform[] { GeomatricTransform.RotationX(25), GeomatricTransform.RotationZ(25) });
             triangle.AddTransform(GeomatricTransform.RotationX(25));
 
-            formeList.AddRange(new Forme[] {sphere,cone });
+            formeList.AddRange(new Forme[] {sphere,disque });
 
             sphere.color = new Couleur(Color.Red);
             plan.color = new Couleur(Color.Red);
