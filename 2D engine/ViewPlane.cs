@@ -1,4 +1,6 @@
-﻿namespace _2D_engine
+﻿using _2D_engine.Sample;
+
+namespace _2D_engine
 {
     internal class ViewPlane
     {
@@ -7,6 +9,9 @@
         public double pixelSize { get; set; }
         public double gamma { get; set; }
         public double invGamma { get; set; }
+
+        public int maxDepth { get; set; }
+        public Sampler sampler { get; set; }
         public ViewPlane() { }
     }
 }

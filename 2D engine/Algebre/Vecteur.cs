@@ -42,6 +42,7 @@
 
         public Vecteur normalization()
         {
+            if (norme == 0) return this;
             return this / norme;
         }
 

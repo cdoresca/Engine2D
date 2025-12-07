@@ -62,7 +62,7 @@ namespace _2D_engine.Acceleration
             return tmax >= tmin;
         }
 
-        public bool Intersects(Ray r,out double t)
+        public bool Intersects(Ray r, out double t)
         {
             double t0, t1, tmax = r.max, tmin = r.min;
 

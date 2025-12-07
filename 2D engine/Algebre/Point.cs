@@ -52,6 +52,16 @@
             return new Point(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
         }
 
+        public static Point operator *(double a, Point b)
+        {
+            return new Point(a * b.x, a * b.y, a * b.z);
+        }
+
+        public static Point operator *(Point b, double a)
+        {
+            return new Point(a * b.x, a * b.y, a * b.z);
+        }
+
         public static Point operator /(Point b, double a)
         {
             return new Point(b.x / a, b.y / a, b.z / a);

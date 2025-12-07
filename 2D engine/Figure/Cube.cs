@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using _2D_engine.Acceleration;
+﻿using _2D_engine.Acceleration;
 using _2D_engine.Algebre;
 using _2D_engine.Trace;
 using GT = _2D_engine.Algebre.GeomatricTransform;
@@ -22,10 +21,8 @@ namespace _2D_engine.Figure
             transform = new GT();
         }
 
-        public override bool Intersection(Ray ray, out Intersection info)
+        public override bool Intersection(Ray ray, ref Intersection info)
         {
-            info = null;
-
             Ray localRay = GT.TransformRay(ray, transform.inverse);
 
             double t0, t1, tmax = localRay.max, tmin = localRay.min;
@@ -60,7 +57,8 @@ namespace _2D_engine.Figure
             Vecteur vecteurWorld = GT.TransformNormal(localNormal, transform.inverse.GetTranspose()).normalization();
             Normal normalWorld = new Normal(vecteurWorld);
             if (normalWorld * ray.directeur > 0) normalWorld = new Normal(-1 * normalWorld);
-            info = new Intersection(t, pointWorld, normalWorld, this, this.color, GetUV(normalWorld));
+
+            info.SetInfo(t, pointWorld, normalWorld, this,material, 0,0,true, ray);
 
             return true;
         }
@@ -73,11 +71,11 @@ namespace _2D_engine.Figure
 
         }
 
-        
+
         public override Normal GetNormal(Algebre.Point hitPoint)
         {
-            
-         
+
+
 
             // Choose normal based on which face the intersection is closest to
             const float epsilon = 1e-4f; // much larger than float.Epsilon
@@ -102,7 +100,7 @@ namespace _2D_engine.Figure
                 var dy = Math.Min(Math.Abs(hitPoint[1] - min[1]), Math.Abs(hitPoint[1] - max[1]));
                 var dz = Math.Min(Math.Abs(hitPoint[2] - min[2]), Math.Abs(hitPoint[2] - max[2]));
                 double m = Math.Min(dx, Math.Min(dy, dz));
-                 if (m == dx) n = new Normal(Math.Sign(hitPoint[0]), 0, 0);
+                if (m == dx) n = new Normal(Math.Sign(hitPoint[0]), 0, 0);
                 else if (m == dy) n = new Normal(0, Math.Sign(hitPoint[1]), 0);
                 else n = new Normal(0, 0, Math.Sign(hitPoint[2]));
             }
@@ -110,5 +108,21 @@ namespace _2D_engine.Figure
             return n;
         }
 
+        public override void GetUV(Point point, out double u, out double v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Point Sample()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override double pdf()
+        {
+            throw new NotImplementedException();
+        }
+
+        
     }
 }

@@ -9,7 +9,7 @@ namespace MyApp
         {
             World world = new World();
             Image img = new Image(world.RenderScene());
-            img.saveImage("Planet.png");
+            img.saveImage("AreaLightPlan.png");
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿using _2D_engine.Algebre;
+﻿using _2D_engine.Acceleration;
+using _2D_engine.Algebre;
 using _2D_engine.Trace;
-using _2D_engine.Acceleration;
 
 namespace _2D_engine.Figure
 {
@@ -53,9 +53,9 @@ namespace _2D_engine.Figure
             return new Normal(0, 1, 0);
         }
 
-        public override bool Intersection(Ray ray, out Intersection info)
+        public override bool Intersection(Ray ray, ref Intersection info)
         {
-            info = null;
+           
 
             Ray localRay = GeomatricTransform.TransformRay(ray, transform.inverse);
 
@@ -79,7 +79,7 @@ namespace _2D_engine.Figure
             Vecteur vecteurWorld = GeomatricTransform.TransformNormal(localNormal, transform.inverse.GetTranspose()).normalization();
             Normal normalWorld = new Normal(vecteurWorld);
 
-            info = new Intersection(t, pointWorld, normalWorld, this, this.color, (0, 0));
+            info.SetInfo(t, pointWorld, normalWorld, this, material, 0, 0,true, ray);
             return true;
         }
 
@@ -87,5 +87,22 @@ namespace _2D_engine.Figure
         {
             return 1 / 2 * ((p2 - p1) % (p3 - p1)).norme;
         }
+
+        public override void GetUV(Point point, out double u, out double v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Point Sample()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override double pdf()
+        {
+            throw new NotImplementedException();
+        }
+
+       
     }
 }

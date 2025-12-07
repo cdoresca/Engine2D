@@ -1,45 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using _2D_engine.Algebre;
+﻿using _2D_engine.Algebre;
 
 namespace _2D_engine.Sample
 {
     internal class StratifiedSampler : Sampler
     {
         private Random random;
-        int nbParPixel;
+
 
         public StratifiedSampler(int nbParPixel) : base()
         {
             random = new Random();
-            this.nbParPixel = nbParPixel;
-
+            this.nbSamples = nbParPixel;
+            GenerateSample();
         }
 
         public override void GenerateSample()
         {
             double x, y;
 
-            double step = 1 / nbParPixel;
-            
-            for(int i = 0; i < nbParPixel; i++)
+            double step = 1 / nbSamples;
+            sample.Clear();
+            for (int i = 0; i < nbSamples; i++)
             {
-                for (int j = 0; j < nbParPixel; j++) 
+                for (int j = 0; j < nbSamples; j++)
                 {
                     x = (i + random.NextDouble()) * step;
                     y = (j + random.NextDouble()) * step;
-                        
+
                     sample.Add(new Point(x, y));
-                    
+
                 }
-                    
+
             }
-            
-            
+
         }
     }
 }

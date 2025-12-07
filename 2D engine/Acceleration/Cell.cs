@@ -13,31 +13,31 @@ namespace _2D_engine.Acceleration
 
         public int Count { get { return objects.Count; } }
 
-        public bool Intersect(Ray ray, out Intersection info)
+        public bool Intersect(Ray ray, ref Intersection info)
         {
 
-            info = null;
+            
 
             if (objects.Count == 0)
                 return false;
 
             double tmin = ray.max;
             bool found = false;
-     
+
 
             foreach (var item in objects)
             {
                 if (item.boundingBox(ray))
                 {
 
-                    if (item.Intersection(ray, out Intersection temp))
+                    if (item.Intersection(ray,ref info))
                     {
-                        
-                        if (temp.t < tmin)
+
+                        if (info.t < tmin)
                         {
-                            tmin = temp.t;
+                            tmin = info.t;
                             found = true;
-                            info = temp;
+                            
                         }
                     }
                 }

@@ -9,7 +9,7 @@
         public double max { get; set; }
 
         int depth;
-        public Ray(Point p, Vecteur v, double max = 10000, double min = 1)
+        public Ray(Point p, Vecteur v, double max = double.MaxValue, double min = 1)
         {
             origine = p;
             directeur = v;

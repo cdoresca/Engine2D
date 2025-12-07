@@ -1,6 +1,8 @@
 ﻿using _2D_engine.Acceleration;
 using _2D_engine.Algebre;
 using _2D_engine.Trace;
+using _2D_engine.Sample;
+using GT = _2D_engine.Algebre.GeomatricTransform;
 
 namespace _2D_engine.Figure
 {
@@ -23,6 +25,7 @@ namespace _2D_engine.Figure
             );
             WorldBox = box;
             transform = new GeomatricTransform();
+            sample = new RandomSampler(4);
         }
 
         public override Normal GetNormal(Point point)
@@ -30,11 +33,15 @@ namespace _2D_engine.Figure
             return normal;
         }
 
-        public override bool Intersection(Ray ray, out Intersection info)
+        public override void GetUV(Point point, out double u, out double v)
         {
-            info = null;
+            throw new NotImplementedException();
+        }
 
-            Ray localRay = GeomatricTransform.TransformRay(ray, transform.inverse);
+        public override bool Intersection(Ray ray, ref Intersection info)
+        {
+
+            Ray localRay = GT.TransformRay(ray, transform.inverse);
 
             double denom = normal * localRay.directeur;
 
@@ -48,17 +55,35 @@ namespace _2D_engine.Figure
             Algebre.Point localHit = localRay.at(t);
 
 
-            Algebre.Point pointWorld = GeomatricTransform.TransformPoint(localHit, transform.matrix);
-            Normal normalWorld = new Normal(GeomatricTransform.TransformNormal(GetNormal(localHit), transform.inverse).normalization());
+            Algebre.Point pointWorld = GT.TransformPoint(localHit, transform.matrix);
+            Normal normalWorld = new Normal(GT.TransformNormal(GetNormal(localHit), transform.inverse.GetTranspose()));
 
 
-            info = new Intersection(t, pointWorld, normalWorld, this, this.color, (0, 0));
+            info.SetInfo(t, pointWorld, normalWorld, this, material, 0, 0, true, ray);
             return true;
+        }
+
+        public override double pdf()
+        {
+            return 1 / Surface();
+        }
+
+        public override Point Sample()
+        {
+            Point unitSample = sample.sampleUnitSquare();
+
+            double x  =  unitSample[0] * (box.max[0] - box.min[0]) + box.min[0];
+            double z  =  unitSample[1] * (box.max[2] - box.min[2]) + box.min[2];
+
+            Point planSample = GT.TransformPoint(new Point(x, 0, z), transform.matrix);
+
+            return planSample;
         }
 
         public override double Surface()
         {
             return width * height;
         }
+
     }
 }

@@ -16,6 +16,19 @@
         {
         }
         
-        
+        public Normal normalization()
+        {
+            return new Normal(base.normalization());
+        }
+
+        public static Normal operator *(double a, Normal b)
+        {
+            return new Normal(a * b[0], a * b[1], a * b[2]);
+        }
+
+        public static Normal operator *(Normal b, double a)
+        {
+            return new Normal(a * b[0], a * b[1], a * b[2]);
+        }
     }
 }

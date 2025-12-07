@@ -94,7 +94,7 @@
 
         public static Matrice RotateX(double angle)
         {
-            double rad = angle  * Math.PI / 180.0;
+            double rad = angle * Math.PI / 180.0;
             double[,] tab = { { 1, 0, 0, 0},
                               { 0, Math.Cos(rad), -Math.Sin(rad), 0},
                               { 0, Math.Sin(rad), Math.Cos(rad), 0},
@@ -104,7 +104,7 @@
         }
         public static Matrice RotateY(double angle)
         {
-            double rad = angle  * Math.PI / 180.0;
+            double rad = angle * Math.PI / 180.0;
             double[,] tab = { { Math.Cos(rad), 0, Math.Sin(rad), 0},
                               { 0, 1, 0, 0},
                               { -Math.Sin(rad), 0, Math.Cos(rad), 0},

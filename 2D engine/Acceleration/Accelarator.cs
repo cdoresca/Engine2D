@@ -1,20 +1,18 @@
-﻿using _2D_engine.Algebre;
-using _2D_engine.Figure;
-using _2D_engine.Trace;
+﻿using _2D_engine.Figure;
 
 namespace _2D_engine.Acceleration
 {
-    internal abstract class Accelarator
+    internal abstract class Accelarator : Forme
     {
         protected List<Forme> formes;
 
-        
+
         public Accelarator(List<Forme> obj)
         {
             formes = obj;
         }
 
-        public abstract bool Intersection(Ray ray, out Intersection info);
+        public List<Forme> GetForme() { return formes; }
 
 
     }

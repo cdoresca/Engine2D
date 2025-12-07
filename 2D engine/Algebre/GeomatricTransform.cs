@@ -15,7 +15,7 @@
             matrix = new Matrice(); inverse = new Matrice();
         }
 
-        
+
 
         public static GeomatricTransform Translation(Vecteur translation)
         {
@@ -60,7 +60,8 @@
         }
         public static Normal TransformNormal(Normal v, Matrice mat)
         {
-            return new Normal((mat * v).normalization());
+            Vecteur vecteur = mat * v;
+            return new Normal(vecteur.normalization());
         }
         public void Multiply(GeomatricTransform gt)
         {
