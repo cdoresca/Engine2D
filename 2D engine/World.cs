@@ -103,7 +103,7 @@ namespace _2D_engine
             Sphere sphere = new Sphere(50);
             Sphere sphere1 = new Sphere(100);
             Sphere earth = new Sphere(200);
-            Plan plan = new Plan(200, 200);
+            Plan plan = new Plan(300, 300);
             Plan sol = new Plan(3000,3000);
 
             sphere.AddTransform(GeomatricTransform.Translation(new Vecteur(0, 500, 0)));

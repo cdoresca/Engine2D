@@ -25,7 +25,7 @@ namespace _2D_engine.Figure
             );
             WorldBox = box;
             transform = new GeomatricTransform();
-            sample = new RandomSampler(4);
+            sample = new RandomSampler(100);
         }
 
         public override Normal GetNormal(Point point)
@@ -70,6 +70,7 @@ namespace _2D_engine.Figure
 
         public override Point Sample()
         {
+            sample.GenerateSample();
             Point unitSample = sample.sampleUnitSquare();
 
             double x  =  unitSample[0] * (box.max[0] - box.min[0]) + box.min[0];

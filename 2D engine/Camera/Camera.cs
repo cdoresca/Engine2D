@@ -65,6 +65,8 @@ namespace _2D_engine.Camera
                 {
                     colorPixel = new Couleur();
 
+                   
+
                     for (int s = 0; s < plane.sampler.NbSamples; s++)
                     {
                         sample = plane.sampler.sampleUnitSquare();

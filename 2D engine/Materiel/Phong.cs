@@ -64,13 +64,13 @@ namespace _2D_engine.Materiel
             {
                 int n = 1;
 
+                light.Sample();
                 if (light is AreaLight area)
                     n = area.forme.sample.NbSamples;
                 Couleur tmp = new Couleur();
                 for (int i = 0; i < n; i++)
                 {
 
-                    light.Sample();
                     Vecteur toLight = light.getDirection(info.point);
                     Point origin = info.point + info.normal * EPS;
 
