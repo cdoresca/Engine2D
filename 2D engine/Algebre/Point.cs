@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _2D_engine.Algebre
+﻿namespace _2D_engine.Algebre
 {
     internal class Point
     {
@@ -13,19 +7,25 @@ namespace _2D_engine.Algebre
         double y;
         double z;
 
-        
 
         public Point(double x = 0, double y = 0, double z = 0)
         {
             this.x = x;
             this.y = y;
             this.z = z;
+        }
+
+        public Point(Point point)
+        {
+            this.x = point[0];
+            this.y = point[1];
+            this.z = point[2];
 
         }
 
-        public double distance(Point other)
-        { 
-            return (other - this).n;
+        public double Distance(Point other)
+        {
+            return (other - this).norme;
         }
 
         public override string ToString()
@@ -33,9 +33,89 @@ namespace _2D_engine.Algebre
             return $"({x}, {y}, {z})";
         }
 
-        public static Vector operator -(Point b, Point a)
+        public static Vecteur operator -(Point a, Point b)
         {
-            return new Vector(a.x - b.x, a.y - b.y, a.z - b.z);
+            return new Vecteur(a.x - b.x, a.y - b.y, a.z - b.z);
+        }
+
+        public static Point operator +(Vecteur a, Point b)
+        {
+            return new Point(a[0] + b.x, a[1] + b.y, a[2] + b.z);
+        }
+
+        public static Point operator +(Point a, Vecteur b)
+        {
+            return new Point(a[0] + b[0], a[1] + b[1], a[2] + b[2]);
+        }
+        public static Point operator -(Point a, Vecteur b)
+        {
+            return new Point(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+        }
+
+        public static Point operator *(double a, Point b)
+        {
+            return new Point(a * b.x, a * b.y, a * b.z);
+        }
+
+        public static Point operator *(Point b, double a)
+        {
+            return new Point(a * b.x, a * b.y, a * b.z);
+        }
+
+        public static Point operator /(Point b, double a)
+        {
+            return new Point(b.x / a, b.y / a, b.z / a);
+        }
+
+        public static bool operator <(Point a, Point b)
+        {
+            return a.x < b.x && a.y < b.y && a.z < b.z;
+        }
+        public static bool operator >(Point a, Point b)
+        {
+            return a.x > b.x && a.y > b.y && a.z > b.z; ;
+        }
+
+        public static bool operator ==(Point a, Point b)
+        {
+            return a.x == b.x && a.y == b.y && a.z == b.z; ;
+        }
+        public static bool operator !=(Point a, Point b)
+        {
+            return a.x != b.x && a.y != b.y && a.z != b.z;
+        }
+
+        public static bool operator <=(Point a, Point b)
+        {
+            return a.x < b.x || a.y < b.y || a.z < b.z;
+        }
+        public static bool operator >=(Point a, Point b)
+        {
+            return a.x > b.x || a.y > b.y || a.z > b.z; ;
+        }
+
+        public double this[int index]
+        {
+            get
+            {
+                return index switch
+                {
+                    0 => x,
+                    1 => y,
+                    2 => z,
+                    _ => throw new IndexOutOfRangeException("Index doit être entre 0 et 3.")
+                };
+            }
+            set
+            {
+                switch (index)
+                {
+                    case 0: x = value; break;
+                    case 1: y = value; break;
+                    case 2: z = value; break;
+                    default: throw new IndexOutOfRangeException("Index doit être entre 0 et 3.");
+                }
+            }
         }
     }
 }

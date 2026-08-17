@@ -1,22 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _2D_engine.Algebre
+﻿namespace _2D_engine.Algebre
 {
-    internal class Normal : Vector
+    internal class Normal : Vecteur
     {
-        public Normal(double x = 0, double y = 0, double z = 0): base(x, y, z) 
-        {
-            
-        }
-
-        public Normal(Vector v1, Vector v2) : base(v1.cross(v2))
+        public Normal(double x = 0, double y = 0, double z = 0) : base(x, y, z)
         {
 
         }
 
+        public Normal(Vecteur v1, Vecteur v2) : base(v1.cross(v2))
+        {
+
+        }
+
+        public Normal(Vecteur v) : base(v)
+        {
+        }
+        
+        public Normal normalization()
+        {
+            return new Normal(base.normalization());
+        }
+
+        public static Normal operator *(double a, Normal b)
+        {
+            return new Normal(a * b[0], a * b[1], a * b[2]);
+        }
+
+        public static Normal operator *(Normal b, double a)
+        {
+            return new Normal(a * b[0], a * b[1], a * b[2]);
+        }
     }
 }

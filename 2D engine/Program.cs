@@ -1,5 +1,4 @@
-﻿using System;
-using _2D_engine;
+﻿using _2D_engine;
 
 
 namespace MyApp
@@ -9,8 +8,8 @@ namespace MyApp
         static void Main(string[] args)
         {
             World world = new World();
-            world.build();
-            world.rendderScene();
+            Image img = new Image(world.RenderScene());
+            img.saveImage("AreaLightPlan.png");
         }
     }
 }
